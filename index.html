@@ -1123,10 +1123,44 @@ let agenda=[
   {data:'Domingo',      nome:'Escola Bíblica Dominical', hora:'08h30', ordem:2},
   {data:'Domingo',      nome:'Culto Público',            hora:'19h00', ordem:3},
 ];
-function login(){const v=document.getElementById('pw-in').value;if(v===SENHA){document.getElementById('pw-err').style.display='none';C('login');logado=true;fillAdm();O('admin');showAdmBars(true);}else{document.getElementById('pw-err').style.display='block';}}
-function logout(){logado=false;showAdmBars(false);C('admin');document.getElementById('pw-in').value='';}
-function showAdmBars(v){['bar-pal','bar-bib','bar-midia','bar-culto','bar-ag','bar-dev','bar-sermoes','bar-end','bar-pastor'].forEach(id=>document.getElementById(id).classList.toggle('on',v));}
-function fillAdm(){
+async function login() {
+  const p = document.getElementById('adm-pass').value;
+  if (!p) return;
+  try {
+    const d = await window._F.getDoc(window._F.doc(window._db, 'portal', 'config'));
+    if (d.exists() && d.data().senha === p) {
+      document.getElementById('pw-err').style.display = 'none';
+      localStorage.setItem('imv-adm', '1');
+      logado = true;
+      fillAdm();
+      showAdmBars(true);
+      C('inicio');
+      alert('Bem-vindo, Administrador!');
+    } else {
+      document.getElementById('pw-err').style.display = 'block';
+      alert('Senha incorreta!');
+    }
+  } catch (e) {
+    console.error(e);
+    alert('Erro de conexão com o banco.');
+  }
+}
+
+function logout() {
+  logado = false;
+  showAdmBars(false);
+  localStorage.removeItem('imv-adm');
+  location.reload();
+}
+
+function showAdmBars(v) {
+  ['bar-pal', 'bar-bib', 'bar-midia', 'bar-culto', 'bar-ag', 'bar-dev', 'bar-sermoes', 'bar-end', 'bar-pastor'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('on', v);
+  });
+}
+
+function fillAdm() {
   const pt=document.getElementById('pal-text');document.getElementById('adm-pal').value=pt.classList.contains('ph')?'':pt.textContent;
   const bt=document.getElementById('bib-text');document.getElementById('adm-bib').value=bt.classList.contains('ph')?'':bt.textContent;
   document.getElementById('adm-rad').value=document.getElementById('rad-url').value;
@@ -1238,4 +1272,5 @@ initPortal();
 renderAgPub(); // exibe agenda padrão imediatamente
 </script>
 </body>
+
 </html>
