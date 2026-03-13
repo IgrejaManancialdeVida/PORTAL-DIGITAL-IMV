@@ -1161,13 +1161,42 @@ function showAdmBars(v) {
 }
 
 function fillAdm() {
-  const pt=document.getElementById('pal-text');document.getElementById('adm-pal').value=pt.classList.contains('ph')?'':pt.textContent;
-  const bt=document.getElementById('bib-text');document.getElementById('adm-bib').value=bt.classList.contains('ph')?'':bt.textContent;
-  document.getElementById('adm-rad').value=document.getElementById('rad-url').value;
-  document.getElementById('adm-yt').value=curYt;
-  document.getElementById('adm-end').value=document.getElementById('end-txt').textContent;
-  document.getElementById('adm-fb-st').textContent=window._fbReady?'✓ Firebase conectado':'⚠ Firebase não configurado — configure as credenciais';
-  renderAgRows();renderSermRows();
+  // 1. Verifica se os dados do portal foram carregados do Firebase
+  if (!window.portal) {
+    console.warn("Dados do portal não carregados ainda.");
+    return;
+  }
+
+  // 2. Mapeia os IDs corretos do seu HTML para os dados do Banco
+  const campos = {
+    'adm-pal-txt': portal.pal,
+    'adm-bib-txt': portal.bib,
+    'adm-yt-url': portal.ytUrl,
+    'adm-rad-url': portal.radioUrl,
+    'adm-dev-tit': portal.devTitulo,
+    'adm-dev-txt': portal.devTexto,
+    'adm-dev-dat': portal.devData,
+    'adm-end-txt': portal.endereco,
+    'adm-maps-url': portal.mapsUrl
+  };
+
+  // 3. Preenche cada campo se ele existir na tela
+  for (let id in campos) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.value = campos[id] || '';
+    }
+  }
+
+  // 4. Atualiza o status do Firebase e renderiza as tabelas
+  const status = document.getElementById('adm-fb-st');
+  if (status) {
+    status.textContent = window._fbReady ? '✓ Firebase conectado' : '⚠ Erro na conexão';
+  }
+
+  // Chama as funções para carregar a lista de agenda e sermões no painel
+  if (typeof renderAgRows === 'function') renderAgRows();
+  if (typeof renderSermRows === 'function') renderSermRows();
 }
 
 /* ── FIREBASE ── */
@@ -1274,3 +1303,4 @@ renderAgPub(); // exibe agenda padrão imediatamente
 </body>
 
 </html>
+
