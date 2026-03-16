@@ -212,7 +212,17 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 .ministerios-slider::-webkit-scrollbar{display:none;}
 .ministerios-slider .min-card{flex:0 0 clamp(160px,40vw,220px);scroll-snap-align:start;}
 @media(min-width:820px){.ministerios-slider{overflow-x:visible;flex-wrap:wrap;}.ministerios-slider .min-card{flex:1 1 160px;}}
+/* LIMPEZA MOBILE — esconder conteúdos no telemóvel */
+@media (max-width: 768px){
+  #conteudos { display: none !important; }
+}
 
+/* TRAVA DE SEGURANÇA ADMIN */
+#admin-panel, .btn-adm-pastores {
+  display: none !important;
+}
+
+</style>
 /* ── BOTÃO VOLTAR AO TOPO ── */
 #back-top{position:fixed;bottom:28px;right:22px;z-index:300;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);border:none;font-size:1rem;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,.45);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;}
 #back-top.show{opacity:1;pointer-events:all;transform:none;}
@@ -1226,7 +1236,22 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
 <script>
 'use strict';
 
-/* ── BÍBLIA ACCORDION ── */
+// TRAVA DE SEGURANÇA: Libera o painel apenas com ?modo=admin na URL
+  document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("modo") === "admin") {
+      const painel = document.getElementById("admin-panel");
+      if (painel) {
+        painel.style.setProperty('display', 'flex', 'important');
+      }
+      // Mostra botões de edição de pastores, se houver
+      document.querySelectorAll('.btn-adm-pastores').forEach(btn => {
+        btn.style.setProperty('display', 'inline-flex', 'important');
+      });
+    }
+  });
+  
+  /* ── BÍBLIA ACCORDION ── */
 function toggleBiblia(el){
   var body=document.getElementById('bib-body');
   var arrow=el.querySelector('.bib-arrow');
