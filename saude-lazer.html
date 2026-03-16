@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Saúde e Lazer – Igreja Manancial de Vida</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕊</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --navy:#060f2a;--navy2:#0a1628;--navy3:#0f2040;
+  --red:#c0272d;--gold:#c9a84c;--gold2:#e8c96a;--gold3:#f5e0a0;
+  --white:#f8f4ed;--muted:#8a9ab8;
+  --border:rgba(201,168,76,.18);--border2:rgba(201,168,76,.5);
+  --glass:rgba(255,255,255,.04);--glass2:rgba(255,255,255,.08);
+  --r:16px;--r2:22px;--sh:0 8px 40px rgba(0,0,0,.5);--t:all .3s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);min-height:100vh;}
+::-webkit-scrollbar{width:5px;} ::-webkit-scrollbar-track{background:var(--navy2);} ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px;}
+
+/* ── TOP BAR ── */
+.topbar{
+  background:rgba(4,10,26,.97);border-bottom:1px solid var(--border);
+  padding:10px 28px;display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);
+}
+.topbar-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.topbar-logo span{font-family:'Cinzel',serif;font-size:.78rem;color:var(--gold3);letter-spacing:2px;}
+.btn-back{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);
+  color:var(--gold);padding:7px 16px;border-radius:20px;
+  font-size:.67rem;font-family:'Cinzel',serif;letter-spacing:1px;
+  cursor:pointer;text-decoration:none;transition:var(--t);
+}
+.btn-back:hover{background:rgba(201,168,76,.2);border-color:var(--gold);}
+
+/* ── HERO ── */
+.hero{position:relative;height:clamp(240px,32vw,420px);overflow:hidden;}
+.hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.35) saturate(1.2);}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(0deg,var(--navy) 0%,rgba(6,15,42,.2) 55%,transparent 100%);}
+.hero-cnt{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center;
+}
+.hero-cat{
+  font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:4px;color:var(--gold);
+  background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);
+  padding:5px 16px;border-radius:20px;display:inline-flex;align-items:center;gap:7px;
+}
+.hero-title{
+  font-family:'Cinzel',serif;font-size:clamp(1.5rem,4.5vw,3rem);
+  font-weight:900;color:var(--white);letter-spacing:5px;
+  filter:drop-shadow(0 2px 16px rgba(0,0,0,.7));
+}
+.hero-sub{font-size:clamp(.7rem,1.4vw,.85rem);color:var(--gold2);letter-spacing:3px;}
+
+/* ── LAYOUT ── */
+.content-wrap{max-width:1100px;margin:0 auto;padding:48px 24px 80px;}
+
+/* ── SECTION HEADING ── */
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.sh-ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+.sh h2{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold2);}
+.sh-ln{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent);}
+
+/* ── DESTAQUE TOP ── */
+.destaque{
+  background:linear-gradient(145deg,var(--glass2),var(--glass));
+  border:1px solid var(--border);border-radius:var(--r2);
+  padding:32px;margin-bottom:40px;
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+}
+.destaque-icon{
+  width:72px;height:72px;border-radius:18px;flex-shrink:0;
+  background:linear-gradient(135deg,#1a5c30,#0c3318);
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;
+}
+.destaque-body h3{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold3);letter-spacing:2px;margin-bottom:8px;}
+.destaque-body p{font-size:.88rem;line-height:1.75;color:rgba(248,244,237,.78);max-width:620px;}
+
+/* ── CARDS GRID ── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-bottom:48px;}
+.card{
+  background:linear-gradient(145deg,var(--glass2),var(--glass));
+  border:1px solid var(--border);border-radius:var(--r2);
+  overflow:hidden;transition:var(--t);cursor:default;
+}
+.card:hover{transform:translateY(-5px);border-color:var(--border2);box-shadow:var(--sh);}
+.card-img{width:100%;height:160px;object-fit:cover;filter:brightness(.8);transition:filter .3s;}
+.card:hover .card-img{filter:brightness(1);}
+.card-body{padding:20px;}
+.card-tag{
+  display:inline-block;font-family:'Cinzel',serif;font-size:.54rem;
+  letter-spacing:2px;padding:3px 10px;border-radius:20px;margin-bottom:10px;
+}
+.tag-saude{background:rgba(110,255,170,.12);color:#6fffaa;border:1px solid rgba(110,255,170,.25);}
+.tag-lazer{background:rgba(200,122,255,.12);color:#c87aff;border:1px solid rgba(200,122,255,.25);}
+.tag-familia{background:rgba(201,168,76,.12);color:var(--gold2);border:1px solid rgba(201,168,76,.25);}
+.card-title{font-family:'Cinzel',serif;font-size:.82rem;color:var(--white);letter-spacing:1px;margin-bottom:8px;line-height:1.4;}
+.card-desc{font-size:.78rem;line-height:1.65;color:var(--muted);}
+
+/* ── DICA EM DESTAQUE ── */
+.dica-box{
+  background:linear-gradient(135deg,rgba(110,255,170,.07),rgba(6,15,42,.5));
+  border:1px solid rgba(110,255,170,.2);border-radius:var(--r2);
+  padding:28px 32px;margin-bottom:48px;display:flex;gap:18px;align-items:flex-start;
+}
+.dica-ic{font-size:1.6rem;flex-shrink:0;margin-top:2px;}
+.dica-body h4{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:3px;color:#6fffaa;margin-bottom:8px;}
+.dica-body p{font-size:.88rem;line-height:1.75;color:rgba(248,244,237,.8);}
+
+/* ── VERSÍCULO ── */
+.verse-strip{
+  border-left:4px solid var(--gold);
+  background:linear-gradient(145deg,var(--glass2),var(--glass));
+  border-radius:0 var(--r2) var(--r2) 0;
+  padding:24px 28px;margin-bottom:48px;
+}
+.verse-strip p{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(.92rem,2vw,1.15rem);line-height:1.85;color:var(--white);margin-bottom:8px;}
+.verse-strip span{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:3px;color:var(--gold2);}
+
+/* ── SHARE ── */
+.share-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--border);}
+.share-lbl{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;color:var(--muted);}
+.share-btn{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 18px;
+  border-radius:20px;font-size:.68rem;font-family:'Cinzel',serif;letter-spacing:1px;
+  border:1px solid;cursor:pointer;transition:var(--t);text-decoration:none;background:none;
+}
+.share-wpp{border-color:rgba(37,211,102,.35);color:#25d366;}
+.share-wpp:hover{background:rgba(37,211,102,.12);}
+.share-copy{border-color:rgba(201,168,76,.35);color:var(--gold);}
+.share-copy:hover{background:rgba(201,168,76,.1);}
+
+footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);color:rgba(255,255,255,.2);font-size:.68rem;letter-spacing:1px;}
+
+@media(max-width:600px){.content-wrap{padding:32px 16px 60px;}.destaque{padding:22px;}.topbar{padding:10px 16px;}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <a class="topbar-logo" href="../index.html">
+    <span>🕊 MANANCIAL DE VIDA</span>
+  </a>
+  <a class="btn-back" href="../index.html"><i class="fas fa-arrow-left"></i> Voltar</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1400&q=80" alt="Saúde e Lazer"/>
+  <div class="hero-ov"></div>
+  <div class="hero-cnt">
+    <span class="hero-cat"><i class="fas fa-heart-pulse"></i> SAÚDE &amp; LAZER</span>
+    <h1 class="hero-title">Saúde e Lazer</h1>
+    <span class="hero-sub">Cuidando do corpo, da mente e da alma</span>
+  </div>
+</div>
+
+<!-- CONTEÚDO -->
+<div class="content-wrap">
+
+  <!-- DESTAQUE -->
+  <div class="destaque">
+    <div class="destaque-icon">🌿</div>
+    <div class="destaque-body">
+      <h3>Corpo, Mente e Espírito</h3>
+      <p>A Bíblia nos ensina que nosso corpo é templo do Espírito Santo (1 Coríntios 6:19). Cuidar da saúde e reservar momentos de lazer é também uma forma de honrar a Deus. Confira dicas, reflexões e atividades para você e sua família.</p>
+    </div>
+  </div>
+
+  <!-- VERSÍCULO -->
+  <div class="verse-strip">
+    <p>"Amado, eu desejo que em tudo te vá bem, e que tenhas saúde, assim como bem vai a tua alma."</p>
+    <span>— 3 João 1:2</span>
+  </div>
+
+  <!-- SAÚDE -->
+  <div class="sh">
+    <div class="sh-ic" style="background:linear-gradient(135deg,#1a5c30,#0c3318);color:#6fffaa"><i class="fas fa-heart-pulse"></i></div>
+    <h2>Saúde &amp; Bem-Estar</h2>
+    <div class="sh-ln"></div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Sono"/>
+      <div class="card-body">
+        <span class="card-tag tag-saude">SAÚDE</span>
+        <div class="card-title">A Importância do Sono</div>
+        <p class="card-desc">Dormir bem é uma bênção! Adultos precisam de 7 a 9 horas por noite. Um sono reparador melhora o humor, a memória e fortalece o sistema imunológico.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80" alt="Alimentação"/>
+      <div class="card-body">
+        <span class="card-tag tag-saude">NUTRIÇÃO</span>
+        <div class="card-title">Alimentação Saudável</div>
+        <p class="card-desc">Priorize frutas, verduras e grãos integrais. Beba bastante água. Uma boa alimentação é investimento na saúde que Deus nos deu.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=600&q=80" alt="Exercícios"/>
+      <div class="card-body">
+        <span class="card-tag tag-saude">MOVIMENTO</span>
+        <div class="card-title">Mexa-se Todo Dia</div>
+        <p class="card-desc">30 minutos de caminhada diária fazem uma diferença enorme. Exercitar-se libera endorfinas, reduz o estresse e nos dá mais disposição para servir.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DICA EM DESTAQUE -->
+  <div class="dica-box">
+    <div class="dica-ic">💧</div>
+    <div class="dica-body">
+      <h4>DICA DA SEMANA</h4>
+      <p>Beba pelo menos 2 litros de água por dia. Comece a manhã com um copo d'água antes do café — este simples hábito hidrata as células, melhora a digestão e aumenta a energia logo cedo. Coloque uma garrafinha perto de você durante o dia!</p>
+    </div>
+  </div>
+
+  <!-- LAZER -->
+  <div class="sh">
+    <div class="sh-ic" style="background:linear-gradient(135deg,#4c1c6c,#280d3c);color:#c87aff"><i class="fas fa-star"></i></div>
+    <h2>Lazer &amp; Família</h2>
+    <div class="sh-ln"></div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1511895426328-dc8714191011?w=600&q=80" alt="Família"/>
+      <div class="card-body">
+        <span class="card-tag tag-familia">FAMÍLIA</span>
+        <div class="card-title">Tempo de Qualidade em Casa</div>
+        <p class="card-desc">Jogos de tabuleiro, leitura em família, refeições juntos — são esses momentos simples que constroem laços eternos e memórias preciosas.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1476820865390-c52aeebb9891?w=600&q=80" alt="Natureza"/>
+      <div class="card-body">
+        <span class="card-tag tag-lazer">LAZER</span>
+        <div class="card-title">Contato com a Natureza</div>
+        <p class="card-desc">Uma caminhada no parque, um piquenique, ou simplesmente sentar num jardim contemplando a criação de Deus renova as forças e traz paz interior.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80" alt="Leitura"/>
+      <div class="card-body">
+        <span class="card-tag tag-lazer">CULTURA</span>
+        <div class="card-title">O Prazer da Leitura</div>
+        <p class="card-desc">Além da Bíblia, leituras edificantes ampliam nossa visão de mundo. Reserve 20 minutos por dia para um bom livro e veja seu mundo se transformar.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARE -->
+  <div class="share-row">
+    <span class="share-lbl">COMPARTILHAR</span>
+    <a class="share-btn share-wpp" href="https://wa.me/?text=Saúde e Lazer - Igreja Manancial de Vida" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <button class="share-btn share-copy" onclick="navigator.clipboard.writeText(location.href);this.textContent='✓ Copiado!'"><i class="fas fa-link"></i> Copiar Link</button>
+  </div>
+
+</div>
+
+<footer>© Igreja Manancial de Vida — Todos os direitos reservados</footer>
+
+</body>
+</html>
