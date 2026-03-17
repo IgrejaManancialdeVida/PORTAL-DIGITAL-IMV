@@ -1898,22 +1898,38 @@ function updateClock(){
 setInterval(updateClock,1000);
 updateClock();
 
-/* ── WEATHER (OpenWeather — Campos dos Goytacazes) ── */
 async function fetchWeather(){
-  try{
-    // Usando wttr.in como fallback gratuito sem API key
-    const r=await fetch('https://wttr.in/Campos+dos+Goytacazes?format=j1');
-    const d=await r.json();
-    const temp=d.current_condition[0].temp_C;
-    const desc=d.current_condition[0].weatherDesc[0].value.split(' ')[0].toUpperCase();
-    const icon=getWeatherIcon(d.current_condition[0].weatherCode);
-    const tw=document.getElementById('weather-temp');
-    const dw=document.getElementById('weather-desc');
-    const iw=document.querySelector('#weather-widget i');
-    if(tw)tw.textContent=`${temp}°C`;
-    if(dw)dw.textContent=desc.substring(0,8);
-    if(iw)iw.className=`fas ${icon}`;
-  }catch(e){console.log('Weather fallback');}
+  try {
+    // Tentamos buscar os dados
+    const r = await fetch('https://wttr.in/Campos+dos+Goytacazes?format=j1');
+    
+    if (!r.ok) throw new Error('Falha na resposta'); // Se o site wttr estiver fora ou bloquear
+
+    const d = await r.json();
+    const temp = d.current_condition[0].temp_C;
+    const desc = d.current_condition[0].weatherDesc[0].value.split(' ')[0].toUpperCase();
+    const icon = getWeatherIcon(d.current_condition[0].weatherCode);
+    
+    const tw = document.getElementById('weather-temp');
+    const dw = document.getElementById('weather-desc');
+    const iw = document.querySelector('#weather-widget i');
+
+    if(tw) tw.textContent = `${temp}°C`;
+    if(dw) dw.textContent = desc.substring(0,8);
+    if(iw) iw.className = `fas ${icon}`;
+
+  } catch(e) {
+    console.log('Weather fallback acionado (CORS ou Erro)');
+    
+    // VALORES PADRÃO (Se o clima falhar, ele mostra isso e não fica vazio)
+    const tw = document.getElementById('weather-temp');
+    const dw = document.getElementById('weather-desc');
+    const iw = document.querySelector('#weather-widget i');
+
+    if(tw) tw.textContent = `29°C`; // Temperatura média de Campos
+    if(dw) dw.textContent = `SOL`;
+    if(iw) iw.className = `fas fa-sun`; // Ícone de sol como padrão
+  }
 }
 function getWeatherIcon(code){
   const c=parseInt(code);
