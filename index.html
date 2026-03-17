@@ -763,28 +763,81 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
   gap:8px;
 }
 
-/* MOBILE */
-@media (max-width:768px) {
+/* ============================================================
+   CONFIGURAÇÕES MOBILE (CELULAR) - MANANCIAL DE VIDA
+   ============================================================ */
+@media (max-width: 768px) {
 
-  /* Esconder os cards e o container deles para não sobrar espaço vazio */
+  /* 1. SEÇÃO CONTEÚDOS: REMOVER ALFINETES (SETAS) */
+  .nc-arr {
+    display: none !important; /* Esconde as setas que ficavam em cima da legenda */
+  }
+
+  /* 2. TRAZER OS CARDS DE VOLTA (CORRIGINDO O SUMIÇO) */
   #conteudos .card, 
   #conteudos .conteudos-grid, 
   #conteudos .cards-wrapper,
-  .section-cards {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    margin: 0 !important;
+  .section-cards,
+  .nc-card {
+    display: block !important;     /* Garante que o conteúdo apareça */
+    visibility: visible !important;
+    height: auto !important;
+    margin: 10px 0 !important;
     padding: 0 !important;
   }
 
-  /* Ajuste para a seção de conteúdos não ficar um buraco branco */
-  #conteudos {
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
+  /* 3. AJUSTE DO TEXTO E LEGENDA NOS CARDS */
+  .nc-card-content {
+    padding: 20px !important;    /* Dá espaço nas laterais */
+    text-align: center !important; /* Centraliza para leitura no celular */
   }
 
-  /* ... (mantenha o código do .hamburger que colocamos antes aqui embaixo) ... */
+  .nc-card-content h3 {
+    font-size: 1.2rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* 4. CÓDIGO DO MENU HAMBÚRGUER (FUNCIONALIDADE) */
+  .hamburger {
+    display: block !important; /* Mostra as 3 barrinhas */
+    z-index: 1100;
+    cursor: pointer;
+  }
+
+  .nav-menu {
+    position: fixed;
+    left: -100%; /* Começa escondido à esquerda */
+    top: 0;
+    width: 80%;  /* Largura do menu aberto */
+    height: 100vh;
+    background: #060f2a; /* Cor escura oficial */
+    flex-direction: column;
+    transition: 0.4s ease-in-out;
+    z-index: 1000;
+    padding-top: 100px;
+    box-shadow: 10px 0 20px rgba(0,0,0,0.8);
+  }
+
+  /* Classe que o JavaScript ativa ao clicar */
+  .nav-menu.active {
+    left: 0; 
+  }
+
+  .nav-menu li {
+    margin: 25px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* 5. AJUSTES FINAIS DE TOPO */
+  .header-info span { 
+    display: none !important; /* Remove o texto longo da igreja no celular */
+  }
+
+  .logo-container h2 {
+    font-size: 1.1rem !important; /* Ajusta o tamanho do nome da igreja */
+  }
 }
 </style>
 
