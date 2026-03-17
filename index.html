@@ -1897,17 +1897,24 @@ function updateClock(){
 setInterval(updateClock,1000);
 updateClock();
 
-async function fetchWeather(){
+async function fetchWeather() {
   try {
-    // Tentamos buscar os dados
-    const r = await fetch('https://wttr.in/Campos+dos+Goytacazes?format=j1');
+    // Usamos o Proxy AllOrigins para contornar o erro de CORS (bloqueio de segurança)
+    const proxyUrl = "https://api.allorigins.win/get?url=";
+    const targetUrl = encodeURIComponent("https://wttr.in/Campos+dos+Goytacazes?format=j1");
     
-    if (!r.ok) throw new Error('Falha na resposta'); // Se o site wttr estiver fora ou bloquear
+    const r = await fetch(proxyUrl + targetUrl);
+    if (!r.ok) throw new Error('Erro na rede');
 
-    const d = await r.json();
+    const rawData = await r.json();
+    const d = JSON.parse(rawData.contents); // "Desembrulha" os dados vindos do proxy
+
     const temp = d.current_condition[0].temp_C;
+    const weatherCode = d.current_condition[0].weatherCode; // O código numérico do clima
     const desc = d.current_condition[0].weatherDesc[0].value.split(' ')[0].toUpperCase();
-    const icon = getWeatherIcon(d.current_condition[0].weatherCode);
+    
+    // AQUI O ÍCONE MUDA DE ACORDO COM O CÓDIGO (Sol, Chuva, Nuvem, etc)
+    const icon = getWeatherIcon(weatherCode);
     
     const tw = document.getElementById('weather-temp');
     const dw = document.getElementById('weather-desc');
@@ -1915,19 +1922,23 @@ async function fetchWeather(){
 
     if(tw) tw.textContent = `${temp}°C`;
     if(dw) dw.textContent = desc.substring(0,8);
-    if(iw) iw.className = `fas ${icon}`;
+    if(iw) {
+        // Remove classes antigas e coloca a nova do ícone dinâmico
+        iw.className = `fas ${icon}`;
+    }
+
+    console.log(`Clima atualizado: ${temp}°C, Código: ${weatherCode}`);
 
   } catch(e) {
-    console.log('Weather fallback acionado (CORS ou Erro)');
-    
-    // VALORES PADRÃO (Se o clima falhar, ele mostra isso e não fica vazio)
+    console.log('Erro ao buscar clima real, usando valores fixos.');
     const tw = document.getElementById('weather-temp');
     const dw = document.getElementById('weather-desc');
     const iw = document.querySelector('#weather-widget i');
 
-    if(tw) tw.textContent = `29°C`; // Temperatura média de Campos
-    if(dw) dw.textContent = `SOL`;
-    if(iw) iw.className = `fas fa-sun`; // Ícone de sol como padrão
+    // Se falhar tudo, ele mostra um padrão seguro
+    if(tw) tw.textContent = "26°C";
+    if(dw) dw.textContent = "NUVENS";
+    if(iw) iw.className = "fas fa-cloud-sun";
   }
 }
 function getWeatherIcon(code){
