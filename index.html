@@ -85,59 +85,9 @@ input[type=file]{display:none;}
 .nav-item i{font-size:.65rem;transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
 .nav-item:hover i{transform:scale(1.25);}
 
-/* --- AJUSTE DO TOPO: LOGO + RELÓGIO (LINHA 1) --- */
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-left: auto; /* Empurra o relógio para a direita */
-}
-
-#clock-nav {
-    font-family: 'Cinzel', serif;
-    font-size: .92rem;
-    color: var(--gold2);
-    letter-spacing: 2px;
-    display: flex;
-    flex-direction: column;
-    /* Alinha à direita para não bater na logo */
-    align-items: flex-end; 
-    justify-content: center;
-    min-width: 140px;
-    text-align: right;
-    /* Aumentamos o line-height para afastar a hora da data */
-    line-height: 1.6; 
-    flex-shrink: 0;
-}
-
-/* Força a Rádio a pular para baixo da Logo e do Nome Manancial */
-.radio-player-container, .radio-wrapper, #radio-gospel {
-    width: 100% !important;
-    flex: 0 0 100% !important;
-    display: flex !important;
-    justify-content: center;
-    margin-top: 15px !important; /* Espaço entre o nome e a rádio */
-    padding: 10px 0;
-}
-
-/* Garante que o topo aceite duas linhas (Logo em cima, Rádio embaixo) */
-.nav-container {
-    display: flex;
-    flex-wrap: wrap; 
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* --- AJUSTE DA RÁDIO: FORÇA A DESCER (LINHA 2) --- */
-.radio-player-container, .radio-wrapper, #radio-gospel, [class*="radio"] {
-    flex: 0 0 100% !important; /* Ocupa 100% da largura, pulando para baixo */
-    display: flex !important;  /* Garante que ela não fique invisível */
-    justify-content: center;
-    margin-top: 15px !important;
-    padding: 10px 0;
-    background: rgba(0, 0, 0, 0.3); /* Fundo escuro sutil */
-    clear: both;
-}
+/* NAV RIGHT */
+.nav-right{display:flex;align-items:center;gap:10px;}
+#clock-nav{font-family:'Cinzel',serif;font-size:.92rem;color:var(--gold2);letter-spacing:2px;}
 
 /* LIVE PILL */
 .live-pill{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;border:none;padding:5px 13px;border-radius:20px;font-size:.62rem;font-weight:700;letter-spacing:2px;cursor:pointer;transition:var(--t);box-shadow:0 2px 12px rgba(192,39,45,.4);}
@@ -169,69 +119,20 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 /* LOGO CIRCULAR */
 .nav-logo img{height:52px;width:52px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);filter:drop-shadow(0 2px 10px rgba(201,168,76,.4));}
 /* ── HAMBURGER ── */
-.hamburger {
-  display: none; 
-  background: rgba(201,168,76,0.1);
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 8px;
-  z-index: 9999; /* Isso garante que ele não fique debaixo da logo */
-  position: relative;
+.hamburger{
+  display:none;background:none;border:1px solid rgba(201,168,76,.2);
+  color:var(--gold);font-size:1.1rem;cursor:pointer;padding:7px 10px;
+  order:3;margin-left:auto;border-radius:8px;
+  transition:background .25s,border-color .25s,transform .25s;
 }
 .hamburger:hover{background:rgba(201,168,76,.1);border-color:var(--gold);transform:rotate(90deg);}
 
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex !important;
-    position: relative; 
-    order: 2;           
-    margin-left: auto;  
-    width: 35px !important;   
-    height: 35px !important;
-    padding: 0 !important;    
-    background: var(--gold) !important; 
-    border: none;             
-    border-radius: 6px;       
-    justify-content: center;  
-    align-items: center;
-    cursor: pointer;
-    z-index: 10001; /* Garante que o botão fique na frente do menu */
-  }
-
-  .hamburger i, .hamburger span {
-    font-size: 1.1rem !important; 
-    color: white !important; 
-  }
-
-  .nav-container {
-    display: flex;
-    justify-content: space-between; /* Corrigido de '空间' para 'space' */
-    align-items: center;
-    padding: 10px 20px;
-  }
-
-  /* ADICIONE ISSO PARA O MENU NÃO FICAR TRAVADO/TRANSPARENTE */
-  .nav-menu {
-    display: none;             /* Escondido por padrão */
-    flex-direction: column;
-    position: fixed !important; 
-    top: 0;
-    right: 0;
-    width: 280px !important;   
-    height: 100vh !important;  
-    background: #061121 !important; /* Cor sólida para não enxergar o fundo */
-    z-index: 10000 !important; 
-    padding: 80px 20px 20px !important;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-  }
-
-  /* Quando o menu abrir pelo JS */
-  .nav-menu.active {
-    display: flex !important;
-  }
+@media(max-width:900px){
+  .nav-menu{display:none;}
+  .hamburger{display:flex;align-items:center;justify-content:center;}
+  .nav-right{order:2;}
+  .nav-logo{order:1;align-items:flex-start;}
+  .nav-logo img{height:36px;width:36px;margin-top:2px;}
 }
 
 /* ── MOBILE MENU — slide + glassmorphism ── */
@@ -240,6 +141,15 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
   background:rgba(4,10,26,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-top:1px solid transparent;
   transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1),border-color .35s;
+}
+#mobile-menu.open{
+  grid-template-rows:1fr;
+  border-top-color:rgba(201,168,76,.18);
+}
+#mobile-menu > .mm-inner{
+  overflow:hidden;
+  padding:0 20px;
+  transition:padding .35s;
 }
 #mobile-menu.open{
   grid-template-rows:1fr;
@@ -339,11 +249,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 
     /* 3. Ajuste da Hora: Sobe a hora e afasta da data */
     #clock-time {
-        font-size: 1.1rem !important;
-        margin-bottom: 10px !important; /* ISSO CRIA O ESPAÇO QUE VOCÊ QUER */
-        display: block !important;
-        line-height: 1 !important;
-    }
+    font-size: 1.1rem !important;
+    margin-bottom: 15px !important; /* Aumentei um pouco para garantir o espaço */
+    display: block !important;
+    line-height: 1 !important;
+}
 
     /* 4. Rádio e Volume: Aparecem centralizados abaixo de tudo */
     .radio-group, [class*="rad-"] {
