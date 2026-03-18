@@ -888,14 +888,15 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
       <a class="nav-item" href="#contato"><i class="fas fa-map-marker-alt"></i> Local</a>
     </div>
     <div class="nav-right">
-      <div id="clock-nav">00:00:00<span id="clock-date"></span></div>
-      <div id="weather-widget"><i class="fas fa-cloud-sun"></i><span id="weather-temp">--°C</span><span id="weather-desc">CAMPOS</span></div>
-      <button class="live-pill off" id="live-pill" onclick="document.getElementById('culto').scrollIntoView({behavior:'smooth'})">
-        <span class="ldot"></span><span id="live-txt">CANAL</span>
-      </button>
-      <button class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-    </div>
-  </div>
+     <div id="clock-nav">
+    <span id="clock-time">00:00:00</span>
+    <span id="clock-date" style="margin-left: 10px; font-size: 0.8rem; opacity: 0.8;"></span>
+</div>
+<div id="weather-widget">
+    <i class="fas fa-cloud-sun"></i>
+    <span id="weather-temp">--°C</span>
+    <span id="weather-desc">CAMPOS</span>
+</div>
   <div id="mobile-menu">
     <div class="mm-inner">
       <a class="nav-item" href="#inicio" onclick="toggleMenu()"><i class="fas fa-home"></i> Início</a>
@@ -2180,7 +2181,48 @@ function ncResetTimer(){
   ncTimer = setInterval(()=>{ ncIdx=(ncIdx+1)%ncItems.length; ncUpdatePos(true); ncResetProg(); }, NC_INTERVAL);
 }
 
-function ncResetProg(){
+  // --- ATUALIZAÇÃO DO RELÓGIO E CLIMA REAL (CAMPOS) ---
+function iniciarRelogioEClima() {
+    const relogioElemento = document.getElementById('clock-nav');
+    const tempElemento = document.getElementById('weather-temp');
+    const weatherIcon = document.querySelector('#weather-widget i');
+
+    // 1. Função do Relógio
+    setInterval(() => {
+        const agora = new Date();
+        const hora = agora.toLocaleTimeString('pt-BR', { hour12: false });
+        const data = agora.toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: 'short' });
+        if (relogioElemento) {
+            relogioElemento.innerHTML = `${hora} <span id="clock-date" style="margin-left:10px; font-size:0.8rem; opacity:0.7;">${data.toUpperCase()}</span>`;
+        }
+    }, 1000);
+
+    // 2. Função do Clima Real (Campos dos Goytacazes)
+    async function buscarClima() {
+        try {
+            const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-21.76&longitude=-41.32&current_weather=true');
+            const dados = await res.json();
+            if (dados && dados.current_weather) {
+                const temp = Math.round(dados.current_weather.temperature);
+                if (tempElemento) tempElemento.innerText = `${temp}°C`;
+                
+                // Muda o ícone para Lua se for noite (após 18h)
+                const horaH = new Date().getHours();
+                if (weatherIcon && (horaH >= 18 || horaH < 6)) {
+                    weatherIcon.className = 'fas fa-moon';
+                }
+            }
+        } catch (e) { console.log("Erro no clima"); }
+    }
+
+    buscarClima();
+    setInterval(buscarClima, 1800000); // Atualiza o clima a cada 30 min
+}
+
+// Ativa tudo
+iniciarRelogioEClima();
+
+  function ncResetProg(){
   clearInterval(ncProgTimer);
   ncProgVal = 0;
   const bar = document.getElementById('nc-prog');
