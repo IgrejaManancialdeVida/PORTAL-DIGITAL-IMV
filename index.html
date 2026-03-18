@@ -95,15 +95,37 @@ input[type=file]{display:none;}
 
 #clock-nav {
     font-family: 'Cinzel', serif;
-    font-size: 0.85rem;      /* Ajustado para não apertar a logo */
+    font-size: .92rem;
     color: var(--gold2);
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;   /* Texto alinhado à direita */
+    /* Alinha à direita para não bater na logo */
+    align-items: flex-end; 
+    justify-content: center;
+    min-width: 140px;
     text-align: right;
-    line-height: 1.2;
+    /* Aumentamos o line-height para afastar a hora da data */
+    line-height: 1.6; 
     flex-shrink: 0;
+}
+
+/* Força a Rádio a pular para baixo da Logo e do Nome Manancial */
+.radio-player-container, .radio-wrapper, #radio-gospel {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    display: flex !important;
+    justify-content: center;
+    margin-top: 15px !important; /* Espaço entre o nome e a rádio */
+    padding: 10px 0;
+}
+
+/* Garante que o topo aceite duas linhas (Logo em cima, Rádio embaixo) */
+.nav-container {
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* --- AJUSTE DA RÁDIO: FORÇA A DESCER (LINHA 2) --- */
