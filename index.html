@@ -317,13 +317,51 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
     text-transform: uppercase;
 }
 
-/* Ajuste para celular: Garante que Clima e Relógio fiquem um ao lado do outro */
+/* AJUSTE PARA CELULAR: CLIMA, RELÓGIO E RÁDIO APARECENDO */
 @media (max-width: 768px) {
+    /* 1. Permite que a rádio desça para a segunda linha no celular */
+    .nav-container, .navbar, .header-main {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    /* 2. Mantém Clima e Relógio um ao lado do outro no topo */
     .nav-right {
         display: flex !important;
         flex-direction: row !important; 
         align-items: center !important;
-        gap: 8px !important;
+        gap: 12px !important;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    /* 3. Ajuste da Hora: Sobe a hora e afasta da data */
+    #clock-time {
+        font-size: 1.1rem !important;
+        margin-bottom: 10px !important; /* ISSO CRIA O ESPAÇO QUE VOCÊ QUER */
+        display: block !important;
+        line-height: 1 !important;
+    }
+
+    /* 4. Rádio e Volume: Aparecem centralizados abaixo de tudo */
+    .radio-group, [class*="rad-"] {
+        flex: 0 0 100% !important; /* Ocupa a largura toda embaixo */
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin-top: 15px !important;
+        gap: 8px;
+        order: 10; 
+    }
+
+    /* 5. FORÇA O VOLUME A APARECER NO CELULAR */
+    input[type="range"] {
+        display: inline-block !important;
+        width: 75px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 }
 
@@ -864,12 +902,12 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
         flex: 1;
     }
 
-    #clock-time {
-        font-size: 1.15rem !important; 
-        margin-bottom: 12px !important; /* ISSO CRIA O ESPAÇO QUE VOCÊ QUER */
-        display: block !important;
-        line-height: 1 !important;
-    }
+  #clock-time {
+    font-size: 1.15rem !important; 
+    margin-bottom: 12px !important; /* AFRESTA A HORA DA DATA */
+    display: block !important;
+    line-height: 1 !important;
+}
 
     #clock-date {
         font-size: 0.65rem !important;
