@@ -846,6 +846,51 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
    CONFIGURAÇÕES MOBILE (CELULAR) - MANANCIAL DE VIDA
    ============================================================ */
 @media (max-width: 768px) {
+    /* 1. FAZ O TOPO ACEITAR DUAS LINHAS */
+    .nav-container, .navbar, .header-main {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 10px 15px !important;
+    }
+
+    /* 2. AJUSTE DO RELÓGIO: SOBE A HORA E AFASTA DA DATA */
+    #clock-nav {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
+        text-align: right !important;
+        flex: 1;
+    }
+
+    #clock-time {
+        font-size: 1.15rem !important; 
+        margin-bottom: 12px !important; /* ISSO CRIA O ESPAÇO QUE VOCÊ QUER */
+        display: block !important;
+        line-height: 1 !important;
+    }
+
+    #clock-date {
+        font-size: 0.65rem !important;
+        opacity: 0.8;
+        display: block !important;
+    }
+
+    /* 3. AJUSTE DA RÁDIO: JOGA PARA BAIXO DO NOME MANANCIAL */
+    .radio-group {
+        flex: 0 0 100% !important;   /* Ocupa a largura inteira da linha de baixo */
+        width: 100% !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important; /* Centraliza a rádio no meio */
+        align-items: center !important;
+        margin-top: 25px !important;  /* Espaço abaixo da Logo e Nome */
+        padding: 10px 0 !important;
+        gap: 12px;                    /* Espaço entre botão e volume */
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
 
   /* 1. SEÇÃO CONTEÚDOS: REMOVER ALFINETES (SETAS) */
   .nc-arr {
@@ -999,7 +1044,7 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
       </div>
     </div>
   </div>
-  <div class="rad-bar" id="rad-bar">
+<div class="radio-group"> 
     <div class="rad-lbl"><i class="fas fa-compact-disc spin"></i> RÁDIO GOSPEL AO VIVO</div>
     <span class="rad-live-dot off" id="rad-dot"></span>
     <span class="rad-now" id="rad-now">Retransmissão</span>
@@ -1008,7 +1053,7 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
     <button class="rad-btn" onclick="toggleRad()"><i class="fas fa-play" id="rad-ico"></i></button>
     <input type="range" min="0" max="1" step="0.05" value="0.8" oninput="document.getElementById('rad-audio').volume=this.value" title="Volume"/>
     <span class="rad-retrans">retransmissão</span>
-  </div>
+</div>
 </nav>
 
 <!-- ══════ HERO ══════ -->
