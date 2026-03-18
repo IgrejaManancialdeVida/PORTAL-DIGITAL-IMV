@@ -96,10 +96,37 @@ input[type=file]{display:none;}
 .ldot{width:7px;height:7px;border-radius:50%;background:#fff;animation:pls 1.3s infinite;}
 .live-pill.off .ldot{animation:none;background:rgba(255,255,255,.3);}
 @keyframes pls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.6)}}
-/* RÁDIO */
-.rad-bar{background:rgba(4,10,26,.9);border-top:1px solid rgba(201,168,76,.12);padding:7px 28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.rad-lbl{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;color:var(--gold);white-space:nowrap;display:flex;align-items:center;gap:6px;flex-shrink:0;}
-.spin{animation:spn 3s linear infinite;} @keyframes spn{to{transform:rotate(360deg)}}
+/* RÁDIO - Ajustado para aproximar o volume */
+.rad-bar {
+  background: rgba(4,10,26,.9);
+  border-top: 1px solid rgba(201,168,76,.12);
+  padding: 7px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* GARANTE QUE TUDO FIQUE PERTO */
+  gap: 15px; /* DISTÂNCIA ENTRE O NOME E O VOLUME (Ajuste aqui) */
+  flex-wrap: wrap;
+}
+
+.rad-lbl {
+  font-family: 'Cinzel', serif;
+  font-size: .58rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.spin {
+  animation: spn 3s linear infinite;
+}
+
+@keyframes spn {
+  to { transform: rotate(360deg); }
+}
 /* badge AO VIVO pulsante */
 .rad-live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff4444;margin-right:3px;animation:pls 1.3s infinite;}
 .rad-live-dot.off{background:#555;animation:none;}
