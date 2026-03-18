@@ -85,21 +85,36 @@ input[type=file]{display:none;}
 .nav-item i{font-size:.65rem;transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
 .nav-item:hover i{transform:scale(1.25);}
 
-/* NAV RIGHT */
-.nav-right{display:flex;align-items:center;gap:10px;}
+/* --- AJUSTE DO TOPO: LOGO + RELÓGIO (LINHA 1) --- */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto; /* Empurra o relógio para a direita */
+}
+
 #clock-nav {
     font-family: 'Cinzel', serif;
-    font-size: .92rem;
+    font-size: 0.85rem;      /* Ajustado para não apertar a logo */
     color: var(--gold2);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 160px;
-    text-align: center;
-    line-height: 1.3;
+    align-items: flex-end;   /* Texto alinhado à direita */
+    text-align: right;
+    line-height: 1.2;
     flex-shrink: 0;
+}
+
+/* --- AJUSTE DA RÁDIO: FORÇA A DESCER (LINHA 2) --- */
+.radio-player-container, .radio-wrapper, #radio-gospel, [class*="radio"] {
+    flex: 0 0 100% !important; /* Ocupa 100% da largura, pulando para baixo */
+    display: flex !important;  /* Garante que ela não fique invisível */
+    justify-content: center;
+    margin-top: 15px !important;
+    padding: 10px 0;
+    background: rgba(0, 0, 0, 0.3); /* Fundo escuro sutil */
+    clear: both;
 }
 
 /* LIVE PILL */
@@ -255,11 +270,40 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 .ticker-sep{color:var(--gold);opacity:.3;padding:0 4px;}
 @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* ── WEATHER WIDGET ── */
-#weather-widget{display:inline-flex;align-items:center;gap:7px;font-family:'Cinzel',serif;font-size:.78rem;color:var(--gold2);letter-spacing:1px;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.18);border-radius:20px;padding:4px 12px;}
-#weather-widget i{font-size:.8rem;}
-#weather-temp{font-weight:600;}
-#weather-desc{font-size:.62rem;color:var(--muted);letter-spacing:2px;}
+/* ── WEATHER WIDGET ATUALIZADO ── */
+#weather-widget {
+    display: flex !important; /* Força o clima a aparecer */
+    align-items: center;
+    gap: 6px;
+    font-family: 'Cinzel', serif;
+    font-size: .75rem; /* Diminuído levemente para caber melhor */
+    color: var(--gold2);
+    letter-spacing: 1px;
+    background: rgba(201, 168, 76, .07);
+    border: 1px solid rgba(201, 168, 76, .18);
+    border-radius: 20px;
+    padding: 3px 10px;
+    white-space: nowrap; /* Impede que o texto do clima quebre em duas linhas */
+}
+
+#weather-widget i { font-size: .8rem; }
+#weather-temp { font-weight: 600; }
+#weather-desc { 
+    font-size: .55rem; /* Descrição menor para não ocupar muito espaço */
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Ajuste para celular: Garante que Clima e Relógio fiquem um ao lado do outro */
+@media (max-width: 768px) {
+    .nav-right {
+        display: flex !important;
+        flex-direction: row !important; 
+        align-items: center !important;
+        gap: 8px !important;
+    }
+}
 
 /* ── CLOCK WITH DATE ── */
 #clock-nav{font-family:'Cinzel',serif;font-size:.82rem;color:var(--gold2);letter-spacing:1px;text-align:center;line-height:1.3;}
@@ -901,9 +945,9 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
       <a class="nav-item" href="#contato"><i class="fas fa-map-marker-alt"></i> Local</a>
     </div>
     <div class="nav-right">
-     <div id="clock-nav">
-    <span id="clock-time">00:00:00</span>
-    <span id="clock-date" style="margin-left: 10px; font-size: 0.8rem; opacity: 0.8;"></span>
+   <div id="clock-nav" style="display: flex; flex-direction: column; align-items: flex-end;">
+    <span id="clock-time" style="font-weight: bold; font-size: 0.95rem;">19:48:37</span>
+    <span id="clock-date" style="font-size: 0.65rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px;">QUA., 18 DE MAR.</span>
 </div>
 <div id="weather-widget">
     <i class="fas fa-cloud-sun"></i>
@@ -1474,9 +1518,27 @@ const VS=[
 (()=>{const v=VS[Math.floor(Math.random()*VS.length)];document.getElementById('sp-v').textContent='"'+v.t+'"';document.getElementById('sp-r').textContent='— '+v.r;})();
 function enter(){document.getElementById('splash').classList.add('hide');}
 
-/* ── RELÓGIO ── */
-function tick(){const n=new Date();const s=n.toLocaleTimeString('pt-BR');document.getElementById('clock-nav').textContent=s;}
-setInterval(tick,1000);tick();
+/* ── RELÓGIO ATUALIZADO (SEM APAGAR A LOGO) ── */
+function tick() {
+    const n = new Date();
+    
+    // Pega a Hora (ex: 19:48:37)
+    const s = n.toLocaleTimeString('pt-BR', { hour12: false });
+    
+    // Pega a Data curta (ex: QUA, 18 MAR)
+    const d = n.toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: 'short' }).toUpperCase();
+
+    // Atualiza apenas os campos específicos
+    const elTime = document.getElementById('clock-time');
+    const elDate = document.getElementById('clock-date');
+
+    if (elTime) elTime.textContent = s;
+    if (elDate) elDate.textContent = d.replace('.', ''); 
+}
+
+// Inicia o relógio e repete a cada 1 segundo
+setInterval(tick, 1000);
+tick();
 
 /* ── NAV SCROLL ── */
 window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>10);updateActiveNav();},{passive:true});
