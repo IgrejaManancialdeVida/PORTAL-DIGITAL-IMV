@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>O Legado de Jó — Igreja Manancial de Vida</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#050d1a;--bg2:#0a1628;--bg3:#0f2040;
+    --gold:#c9a84c;--gold2:#e2c06a;--gold3:#f0d080;
+    --white:#f0ede6;--muted:#8899aa;--border:rgba(201,168,76,.18);--card:rgba(255,255,255,.04);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--white);font-family:'Crimson Pro',Georgia,serif;font-size:1.1rem;line-height:1.8;min-height:100vh;}
+  .site-header{background:rgba(5,13,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;}
+  .site-header a{color:var(--gold);text-decoration:none;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:2px;display:flex;align-items:center;gap:8px;opacity:.8;transition:opacity .2s;}
+  .site-header a:hover{opacity:1;}
+  .site-header span{color:var(--muted);font-size:.8rem;}
+  .hero{position:relative;padding:80px 24px 60px;text-align:center;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.12) 0%,transparent 70%);pointer-events:none;}
+  .categoria{display:inline-block;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:4px;color:var(--gold);border:1px solid var(--border);padding:5px 14px;border-radius:20px;margin-bottom:24px;background:rgba(201,168,76,.07);}
+  .hero h1{font-family:'Cinzel',serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;color:var(--gold2);line-height:1.25;max-width:700px;margin:0 auto 14px;text-shadow:0 2px 30px rgba(201,168,76,.25);}
+  .hero .ref{font-family:'Cinzel',serif;font-size:.85rem;color:var(--muted);letter-spacing:2px;margin-bottom:32px;}
+  .hero .intro{max-width:620px;margin:0 auto;font-size:1.05rem;color:rgba(240,237,230,.75);font-style:italic;}
+  .divider{display:flex;align-items:center;gap:16px;max-width:700px;margin:48px auto;padding:0 24px;}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+  .divider span{color:var(--gold);font-size:.9rem;white-space:nowrap;}
+  .versiculo-destaque{max-width:700px;margin:0 auto 48px;padding:0 24px;}
+  .v-card{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.03));border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:28px 32px;position:relative;}
+  .v-card::before{content:'"';position:absolute;top:-10px;left:20px;font-family:'Cinzel',serif;font-size:4rem;color:var(--gold);opacity:.3;line-height:1;}
+  .v-card p{font-size:1.2rem;font-style:italic;color:var(--gold3);line-height:1.7;}
+  .v-card .ref-small{display:block;margin-top:12px;font-size:.8rem;color:var(--muted);font-family:'Cinzel',serif;letter-spacing:1px;font-style:normal;}
+  .content{max-width:700px;margin:0 auto;padding:0 24px 80px;}
+  .secao{margin-bottom:48px;animation:fadeUp .6s ease both;}
+  .secao:nth-child(2){animation-delay:.1s;}
+  .secao:nth-child(3){animation-delay:.2s;}
+  .secao:nth-child(4){animation-delay:.3s;}
+  .secao:nth-child(5){animation-delay:.4s;}
+  .secao:nth-child(6){animation-delay:.5s;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .num-secao{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;color:var(--gold);margin-bottom:8px;opacity:.7;}
+  .secao h2{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:600;color:var(--gold2);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+  .secao p{color:rgba(240,237,230,.85);margin-bottom:14px;}
+  .secao p:last-child{margin-bottom:0;}
+  .v-inline{background:rgba(201,168,76,.06);border-left:2px solid var(--gold);padding:12px 18px;margin:18px 0;border-radius:0 8px 8px 0;font-style:italic;color:var(--gold3);font-size:1rem;}
+  .reflexao{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;margin:48px 0;}
+  .reflexao h3{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;color:var(--gold);margin-bottom:20px;}
+  .reflexao ol{padding-left:20px;}
+  .reflexao li{color:rgba(240,237,230,.8);margin-bottom:12px;padding-left:6px;}
+  .oracao{background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(10,22,40,.8));border:1px solid var(--border);border-radius:14px;padding:32px;margin-top:48px;text-align:center;}
+  .oracao .icon{font-size:2rem;margin-bottom:16px;color:var(--gold);}
+  .oracao h3{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;color:var(--gold);margin-bottom:20px;}
+  .oracao p{font-style:italic;color:rgba(240,237,230,.8);max-width:500px;margin:0 auto;line-height:1.9;}
+  .footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:2px;color:var(--muted);}
+  .footer a{color:var(--gold);text-decoration:none;}
+  @media(max-width:600px){.hero{padding:60px 20px 40px;}.content{padding:0 20px 60px;}.v-card{padding:20px 22px;}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html">&#8592; Voltar ao Portal</a>
+  <span>/</span>
+  <span>Nossos Estudos</span>
+</header>
+
+<section class="hero">
+  <div class="categoria">✦ ESTUDO BÍBLICO</div>
+  <h1>O Legado de Jó</h1>
+  <p class="ref">LIVRO DE JÓ · Sofrimento e Soberania</p>
+  <p class="intro">Uma reflexão reformada sobre o sofrimento, a soberania de Deus e a fé que persevera mesmo quando todas as respostas faltam.</p>
+</section>
+
+<div class="versiculo-destaque">
+  <div class="v-card">
+    <p>O Senhor disse a Satanás: Consideraste o meu servo Jó? Porque ninguém há na terra semelhante a ele, homem íntegro e reto, temente a Deus e que se desvia do mal.</p>
+    <span class="ref-small">Jó 1:8</span>
+  </div>
+</div>
+
+<div class="divider"><span>✦ ✦ ✦</span></div>
+
+<div class="content">
+
+  <div class="secao">
+    <div class="num-secao">INTRODUÇÃO</div>
+    <h2>O Homem Que Deus Apresentou</h2>
+    <p>O livro de Jó começa com uma cena que deveria nos surpreender: é Deus quem apresenta Jó a Satanás, não o contrário. Isso não é detalhe — é a chave interpretativa de todo o livro. O sofrimento de Jó não foi acidente, nem abandono. Foi permissão soberana de um Deus que conhecia o coração do seu servo antes mesmo de o testar.</p>
+    <p>A teologia reformada sempre insistiu neste ponto: Deus não é um espectador do sofrimento humano. Ele governa todas as coisas, incluindo as mais dolorosas, para a realização de seus propósitos eternos. O livro de Jó não é uma tragédia — é um drama da soberania divina encenado na vida de um homem real.</p>
+  </div>
+
+  <div class="secao">
+    <div class="num-secao">PARTE 1 — JÓ 1 E 2</div>
+    <h2>A Soberania no Sofrimento</h2>
+    <div class="v-inline">"O Senhor o deu, e o Senhor o tomou; bendito seja o nome do Senhor." — Jó 1:21</div>
+    <p>Em um único dia, Jó perdeu filhos, riquezas e saúde. A resposta dele é uma das mais notáveis de toda a Escritura: adoração. Não resignação fatalista, não amargura reprimida — adoração consciente e teológica. Jó sabia que Deus dera, e que Deus tomara. Isso não era conformismo; era fé que enxergava além da circunstância.</p>
+    <p>Calvino comentou que Jó reconheceu a mão de Deus nos instrumentos humanos que trouxeram sua destruição. Os sabeus, os caldeus, o vento — todos foram meios sob a providência divina. Culpar os instrumentos e ignorar a mão soberana seria perder a lição mais profunda do sofrimento.</p>
+    <p>A perda de Jó também nos ensina que a fé bíblica não é uma apólice de seguro contra o sofrimento. O homem mais íntegro da terra foi o mais provado. A prosperidade não é garantia de aprovação divina, nem o sofrimento é sinal de abandono.</p>
+  </div>
+
+  <div class="secao">
+    <div class="num-secao">PARTE 2 — JÓ 3–37</div>
+    <h2>A Honestidade da Fé Provada</h2>
+    <div class="v-inline">"Quem dera eu soubesse onde o poderia achar! Chegaria até o seu tribunal." — Jó 23:3</div>
+    <p>Os diálogos de Jó com seus amigos revelam duas teologias em conflito. Elifaz, Bildade e Zofar representam a teologia da retribuição: sofrimento é punição, prosperidade é bênção, simples assim. É uma teologia limpa, lógica e completamente insuficiente diante da realidade.</p>
+    <p>Jó recusa essa explicação. Não porque negue a justiça de Deus, mas porque sabe que ela não explica seu caso. Ele clama, questiona, protesta — e em nenhum momento é repreendido por isso. A fé bíblica tem espaço para o lamento honesto. O que Deus repreende não é a pergunta de Jó, mas a arrogância teológica de seus amigos.</p>
+    <p>Este é um ponto fundamental da perspectiva reformada: a soberania de Deus não exige que o crente finja que tudo está bem. Ela exige que o crente, mesmo no sofrimento, mantenha sua confiança na bondade e justiça do Senhor — mesmo quando não as enxerga.</p>
+  </div>
+
+  <div class="secao">
+    <div class="num-secao">PARTE 3 — JÓ 38–41</div>
+    <h2>Quando Deus Responde com Perguntas</h2>
+    <div class="v-inline">"Onde estavas tu quando eu lançava os fundamentos da terra?" — Jó 38:4</div>
+    <p>A resposta de Deus a Jó é uma das passagens mais majestosas de toda a Bíblia. Deus não explica o sofrimento — ele revela a si mesmo. Por quatro capítulos, Deus conduz Jó através da criação: as estrelas, os oceanos, os animais, as tempestades. A mensagem é clara: há um Deus que governa tudo isso, e ele não deve satisfações ao homem.</p>
+    <p>Isso pode soar duro, mas é profundamente libertador. Se Deus precisa se justificar a nós, então não é Deus — é nosso subordinado. A grandeza de Deus revelada no turbilhão não esmaga Jó; ela o restaura. Quando ele vê quem é Deus, suas perguntas não são respondidas — elas são dissolvidas pela presença do Soberano.</p>
+  </div>
+
+  <div class="secao">
+    <div class="num-secao">PARTE 4 — JÓ 42</div>
+    <h2>O Legado: Fé Que Atravessa o Fogo</h2>
+    <div class="v-inline">"Eu te conhecia só de ouvir, mas agora os meus olhos te veem." — Jó 42:5</div>
+    <p>O legado de Jó não é sua restauração material — embora ela tenha vindo. Seu legado é uma fé que foi testada até o limite e saiu mais profunda, mais real, mais pessoal. Antes do sofrimento, Jó conhecia Deus pela tradição. Depois, ele o conhecia por experiência.</p>
+    <p>A teologia reformada entende a santificação assim: Deus usa o fogo do sofrimento não para destruir o crente, mas para purificar e aprofundar sua fé. Jó chegou ao final do livro como um homem diferente — não mais rico em posses (embora isso também tenha vindo), mas infinitamente mais rico em conhecimento de Deus.</p>
+    <p>Este é o legado de Jó para a Igreja: a certeza de que nenhum sofrimento está fora do controle de Deus, que a fé honesta sobrevive ao lamento, e que no fim, ver a Deus vale mais do que qualquer resposta que ele poderia nos dar.</p>
+  </div>
+
+  <div class="reflexao">
+    <h3>✦ PERGUNTAS PARA REFLEXÃO</h3>
+    <ol>
+      <li>Como você reage quando o sofrimento não tem explicação aparente? Sua fé se apoia em circunstâncias ou no caráter de Deus?</li>
+      <li>Os amigos de Jó tinham boas intenções, mas teologia errada. Como evitar o mesmo erro ao consolar alguém que sofre?</li>
+      <li>O que significa para você que Deus respondeu a Jó com perguntas em vez de explicações? O que isso revela sobre a natureza da fé?</li>
+      <li>Qual área da sua vida você precisa confiar à soberania de Deus, mesmo sem entender o que ele está fazendo?</li>
+    </ol>
+  </div>
+
+  <div class="oracao">
+    <div class="icon">🙏</div>
+    <h3>✦ ORAÇÃO</h3>
+    <p>Senhor soberano, como Jó, muitas vezes não entendemos o que permites em nossas vidas. Ensina-nos a confiar não nas respostas, mas em Ti. Que o nosso sofrimento aprofunde o nosso conhecimento de quem és. Amém.</p>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <a href="index.html">Igreja Manancial de Vida</a> · Campos dos Goytacazes, RJ · Todos os direitos reservados
+</footer>
+
+</body>
+</html>

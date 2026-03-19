@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>A Fé de Abraão — Igreja Manancial de Vida</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#050d1a;--bg2:#0a1628;--bg3:#0f2040;
+    --gold:#c9a84c;--gold2:#e2c06a;--gold3:#f0d080;
+    --white:#f0ede6;--muted:#8899aa;--border:rgba(201,168,76,.18);--card:rgba(255,255,255,.04);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--white);font-family:'Crimson Pro',Georgia,serif;font-size:1.1rem;line-height:1.8;min-height:100vh;}
+  .site-header{background:rgba(5,13,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;}
+  .site-header a{color:var(--gold);text-decoration:none;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:2px;display:flex;align-items:center;gap:8px;opacity:.8;transition:opacity .2s;}
+  .site-header a:hover{opacity:1;}
+  .site-header span{color:var(--muted);font-size:.8rem;}
+  .hero{position:relative;padding:80px 24px 60px;text-align:center;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.12) 0%,transparent 70%);pointer-events:none;}
+  .categoria{display:inline-block;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:4px;color:var(--gold);border:1px solid var(--border);padding:5px 14px;border-radius:20px;margin-bottom:24px;background:rgba(201,168,76,.07);}
+  .hero h1{font-family:'Cinzel',serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;color:var(--gold2);line-height:1.25;max-width:700px;margin:0 auto 14px;text-shadow:0 2px 30px rgba(201,168,76,.25);}
+  .hero .ref{font-family:'Cinzel',serif;font-size:.85rem;color:var(--muted);letter-spacing:2px;margin-bottom:32px;}
+  .hero .intro{max-width:620px;margin:0 auto;font-size:1.05rem;color:rgba(240,237,230,.75);font-style:italic;}
+  .divider{display:flex;align-items:center;gap:16px;max-width:700px;margin:48px auto;padding:0 24px;}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+  .divider span{color:var(--gold);font-size:.9rem;white-space:nowrap;}
+  .versiculo-destaque{max-width:700px;margin:0 auto 48px;padding:0 24px;}
+  .v-card{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.03));border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:28px 32px;position:relative;}
+  .v-card::before{content:'"';position:absolute;top:-10px;left:20px;font-family:'Cinzel',serif;font-size:4rem;color:var(--gold);opacity:.3;line-height:1;}
+  .v-card p{font-size:1.2rem;font-style:italic;color:var(--gold3);line-height:1.7;}
+  .v-card .ref-small{display:block;margin-top:12px;font-size:.8rem;color:var(--muted);font-family:'Cinzel',serif;letter-spacing:1px;font-style:normal;}
+  .content{max-width:700px;margin:0 auto;padding:0 24px 80px;}
+  .secao{margin-bottom:48px;animation:fadeUp .6s ease both;}
+  .secao:nth-child(2){animation-delay:.1s;}
+  .secao:nth-child(3){animation-delay:.2s;}
+  .secao:nth-child(4){animation-delay:.3s;}
+  .secao:nth-child(5){animation-delay:.4s;}
+  .secao:nth-child(6){animation-delay:.5s;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .num-secao{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;color:var(--gold);margin-bottom:8px;opacity:.7;}
+  .secao h2{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:600;color:var(--gold2);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+  .secao p{color:rgba(240,237,230,.85);margin-bottom:14px;}
+  .secao p:last-child{margin-bottom:0;}
+  .v-inline{background:rgba(201,168,76,.06);border-left:2px solid var(--gold);padding:12px 18px;margin:18px 0;border-radius:0 8px 8px 0;font-style:italic;color:var(--gold3);font-size:1rem;}
+  .reflexao{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;margin:48px 0;}
+  .reflexao h3{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;color:var(--gold);margin-bottom:20px;}
+  .reflexao ol{padding-left:20px;}
+  .reflexao li{color:rgba(240,237,230,.8);margin-bottom:12px;padding-left:6px;}
+  .oracao{background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(10,22,40,.8));border:1px solid var(--border);border-radius:14px;padding:32px;margin-top:48px;text-align:center;}
+  .oracao .icon{font-size:2rem;margin-bottom:16px;color:var(--gold);}
+  .oracao h3{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;color:var(--gold);margin-bottom:20px;}
+  .oracao p{font-style:italic;color:rgba(240,237,230,.8);max-width:500px;margin:0 auto;line-height:1.9;}
+  .footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:2px;color:var(--muted);}
+  .footer a{color:var(--gold);text-decoration:none;}
+  @media(max-width:600px){.hero{padding:60px 20px 40px;}.content{padding:0 20px 60px;}.v-card{padding:20px 22px;}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html">&#8592; Voltar ao Portal</a>
+  <span>/</span>
+  <span>Nossos Estudos</span>
+</header>
+
+<section class="hero">
+  <div class="categoria">✦ ESTUDO BÍBLICO</div>
+  <h1>A Fé de Abraão</h1>
+  <p class="ref">GÊNESIS 12–22 · Pai de Todos os Crentes</p>
+  <p class="intro">Uma meditação reformada sobre a fé que obedece sem ver, espera sem entender e oferece sem guardar.</p>
+</section>
+
+<div class="versiculo-destaque">
+  <div class="v-card">
+    <p>E creu ele no Senhor, e isso lhe foi imputado como justiça.</p>
+    <span class="ref-small">Gênesis 15:6</span>
+  </div>
+</div>
+
+<div class="divider"><span>✦ ✦ ✦</span></div>
+
+<div class="content">
+
+  <div class="secao">
+    <div class="num-secao">INTRODUÇÃO</div>
+    <h2>O Pai de Todos os Que Creem</h2>
+    <p>Abraão é chamado três vezes na Escritura de "amigo de Deus" — uma distinção que nenhum outro personagem do Antigo Testamento recebe. Mas ele também mentiu, duvidou, tomou Hagar por pressão de Sara e riu quando Deus lhe prometeu um filho na velhice. O que faz de Abraão o pai da fé não é sua perfeição, mas a natureza daquilo em que ele creu e em Quem ele confiou.</p>
+    <p>Paulo, em Romanos 4, usa Abraão como a prova definitiva da justificação pela fé somente — sola fide. Abraão foi declarado justo antes da circuncisão, antes da Lei, antes de qualquer obra. Sua fé não foi a causa da promessa, mas a resposta a ela. Deus prometeu; Abraão creu; Deus imputou justiça. Esta é a estrutura do evangelho desde o Gênesis.</p>
+  </div>
+
+  <div class="secao">
+    <div class="num-secao">PARTE 1 — GÊNESIS 12</div>
+    <h2>A Fé Que Obedece Sem Ver</h2>
+    <div class="v-inline">"Vai-te da tua terra, da tua parentela e da casa de teu pai para a terra que te mostrarei." — Gn 12:1</div>
+    <p>O chamado de Abraão é notável por aquilo que falta: detalhes. Deus não disse para onde ir, quanto tempo levaria, ou o que encontraria no caminho. Disse apenas "a terra que te mostrarei" — futura, indefinida, dependente de contínua obediência. Hebreus 11:8 confirma: "saiu sem saber para onde ia."</p>
+    <p>A tradição reformada sempre entendeu que a fé salvadora não é um salto no escuro, mas um passo na luz de quem Deus revelou ser. Abraão não tinha certeza do destino, mas tinha certeza de Quem chamava. Essa distinção é fundamental: a fé bíblica não é confiança nas circunstâncias, mas confiança no Deus que governa as circunstâncias.</p>
+    <p>Deixar Ur dos Caldeus era deixar segurança, família, identidade cultural e herança. A obediência de Abraão custou algo real. A fé que não custa nada raramente é fé de verdade.</p>
+  </div>
+
+  <div class="secao">
+    <div name="num-secao" class="num-secao">PARTE 2 — GÊNESIS 15 E 17</div>
+    <h2>A Fé Que Espera Sem Entender</h2>
+    <div class="v-inline">"Olha agora para os céus e conta as estrelas, se as podes contar... assim será a tua descendência." — Gn 15:5</div>
+    <p>Entre a promessa (Gênesis 12) e o cumprimento (Gênesis 21) há vinte e cinco anos de espera. Nesse intervalo, Abraão cometeu erros, duvidou, tentou antecipar o cumprimento com Hagar. Mas Deus não cancelou a aliança. Ele a renovou, formalizou e cumpriu no tempo que havia determinado — não no tempo que Abraão queria.</p>
+    <p>Gênesis 15 descreve uma cerimônia de aliança onde apenas Deus passa entre os animais. Isso é teologicamente decisivo: a aliança abraâmica é incondicional do lado de Deus. Seu cumprimento não depende da fidelidade de Abraão, mas da fidelidade do Senhor. Esta é a graça: Deus assumiu os dois lados da aliança.</p>
+    <p>A espera não é passividade — é fé ativa que continua a crer mesmo quando o corpo de Sara "já estava morto" (Rm 4:19). Paulo diz que Abraão "não fraquejou na fé" mesmo diante do impossível. Isso não significa que ele nunca vacilou, mas que sua confiança fundamental permaneceu ancorada na promessa divina.</p>
+  </div>
+
+  <div class="secao">
+    <div class="num-secao">PARTE 3 — GÊNESIS 22</div>
+    <h2>A Fé Que Oferece Sem Guardar</h2>
+    <div class="v-inline">"Toma o teu filho, o teu único filho Isaque, a quem amas, e vai-te à terra de Moriá." — Gn 22:2</div>
+    <p>O clímax da história de Abraão é também o texto mais perturbador: Deus pede que ele ofereça Isaque. O filho da promessa. Aquele pelo qual esperou vinte e cinco anos. A única esperança de que as estrelas se cumprissem. Deus pede de volta exatamente o que ele mais amava.</p>
+    <p>Hebreus 11:19 revela o raciocínio de Abraão: ele concluiu que Deus poderia ressuscitar Isaque. Não era ignorância do que estava acontecendo — era confiança de que Deus cumpriria sua promessa de alguma forma que ele ainda não entendia. Esta é a fé madura: não a que nunca questiona, mas a que confia mesmo quando não vê a saída.</p>
+    <p>No Monte Moriá, Deus proveu o cordeiro. Este episódio é tipologia explícita: assim como Abraão ofereceu seu filho amado e Deus proveu substituto, o próprio Deus ofereceria seu Filho unigênito sem que houvesse substituto. O Monte Moriá aponta para o Calvário. A fé de Abraão encontra seu cumprimento pleno na cruz de Cristo.</p>
+  </div>
+
+  <div class="secao">
+    <div class="num-secao">LEGADO</div>
+    <h2>A Fé Que Nos Precede e Nos Convoca</h2>
+    <div class="v-inline">"E a Escritura, prevendo que Deus havia de justificar os gentios pela fé, anunciou previamente o evangelho a Abraão." — Gl 3:8</div>
+    <p>O legado de Abraão não é étnico — é espiritual. Paulo afirma que todos os que creem são filhos de Abraão, herdeiros da mesma promessa. A fé que justificou Abraão é a mesma que justifica o crente hoje: confiança no Deus que ressuscita os mortos e chama as coisas que não são como se fossem (Rm 4:17).</p>
+    <p>A vida de Abraão nos convoca a uma fé que não exige ver para obedecer, não exige entender para esperar, e não exige garantias para oferecer. É uma fé que conhece o Deus fiel e, por isso, pode descansar — mesmo no meio do impossível.</p>
+  </div>
+
+  <div class="reflexao">
+    <h3>✦ PERGUNTAS PARA REFLEXÃO</h3>
+    <ol>
+      <li>Em que área da sua vida Deus está pedindo que você obedeça sem ver o destino completo? O que impede essa obediência?</li>
+      <li>Você está esperando o cumprimento de alguma promessa de Deus? Como a história de Abraão fala à sua espera?</li>
+      <li>O que seria o seu "Isaque" — algo que você ama tanto que teme oferecê-lo a Deus? O que a fé de Abraão diz sobre isso?</li>
+      <li>Como a justificação pela fé somente (sola fide) muda a forma como você se relaciona com Deus no dia a dia?</li>
+    </ol>
+  </div>
+
+  <div class="oracao">
+    <div class="icon">🙏</div>
+    <h3>✦ ORAÇÃO</h3>
+    <p>Pai de Abraão, Isaque e Jacó — e nosso Pai pela fé em Cristo — dá-nos a coragem de obedecer sem ver, a paciência de esperar sem entender, e a liberdade de oferecer sem guardar. Que nossa fé encontre seu descanso em Ti. Amém.</p>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <a href="index.html">Igreja Manancial de Vida</a> · Campos dos Goytacazes, RJ · Todos os direitos reservados
+</footer>
+
+</body>
+</html>
