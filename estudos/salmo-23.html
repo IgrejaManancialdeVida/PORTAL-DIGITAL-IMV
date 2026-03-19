@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Salmo 23 — O Senhor é Meu Pastor | Igreja Manancial de Vida</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#050d1a;
+    --bg2:#0a1628;
+    --bg3:#0f2040;
+    --gold:#c9a84c;
+    --gold2:#e2c06a;
+    --gold3:#f0d080;
+    --white:#f0ede6;
+    --muted:#8899aa;
+    --border:rgba(201,168,76,.18);
+    --card:rgba(255,255,255,.04);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Crimson Pro',Georgia,serif;
+    font-size:1.1rem;
+    line-height:1.8;
+    min-height:100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header{
+    background:rgba(5,13,26,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    padding:14px 24px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    position:sticky;
+    top:0;
+    z-index:100;
+  }
+  .site-header a{
+    color:var(--gold);
+    text-decoration:none;
+    font-family:'Cinzel',serif;
+    font-size:.75rem;
+    letter-spacing:2px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    opacity:.8;
+    transition:opacity .2s;
+  }
+  .site-header a:hover{opacity:1;}
+  .site-header span{color:var(--muted);font-size:.8rem;}
+
+  /* ── HERO ── */
+  .hero{
+    position:relative;
+    padding:80px 24px 60px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,.12) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .categoria{
+    display:inline-block;
+    font-family:'Cinzel',serif;
+    font-size:.6rem;
+    letter-spacing:4px;
+    color:var(--gold);
+    border:1px solid var(--border);
+    padding:5px 14px;
+    border-radius:20px;
+    margin-bottom:24px;
+    background:rgba(201,168,76,.07);
+  }
+  .hero h1{
+    font-family:'Cinzel',serif;
+    font-size:clamp(1.8rem,5vw,3rem);
+    font-weight:700;
+    color:var(--gold2);
+    line-height:1.25;
+    max-width:700px;
+    margin:0 auto 14px;
+    text-shadow:0 2px 30px rgba(201,168,76,.25);
+  }
+  .hero .ref{
+    font-family:'Cinzel',serif;
+    font-size:.85rem;
+    color:var(--muted);
+    letter-spacing:2px;
+    margin-bottom:32px;
+  }
+  .hero .intro{
+    max-width:620px;
+    margin:0 auto;
+    font-size:1.05rem;
+    color:rgba(240,237,230,.75);
+    font-style:italic;
+  }
+
+  /* ── DIVIDER ── */
+  .divider{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    max-width:700px;
+    margin:48px auto;
+    padding:0 24px;
+  }
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+  .divider span{color:var(--gold);font-size:.9rem;white-space:nowrap;}
+
+  /* ── VERSÍCULO DESTAQUE ── */
+  .versiculo-destaque{
+    max-width:700px;
+    margin:0 auto 48px;
+    padding:0 24px;
+  }
+  .v-card{
+    background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.03));
+    border:1px solid var(--border);
+    border-left:3px solid var(--gold);
+    border-radius:0 14px 14px 0;
+    padding:28px 32px;
+    position:relative;
+  }
+  .v-card::before{
+    content:'"';
+    position:absolute;
+    top:-10px;
+    left:20px;
+    font-family:'Cinzel',serif;
+    font-size:4rem;
+    color:var(--gold);
+    opacity:.3;
+    line-height:1;
+  }
+  .v-card p{
+    font-size:1.2rem;
+    font-style:italic;
+    color:var(--gold3);
+    line-height:1.7;
+  }
+  .v-card .ref-small{
+    display:block;
+    margin-top:12px;
+    font-size:.8rem;
+    color:var(--muted);
+    font-family:'Cinzel',serif;
+    letter-spacing:1px;
+    font-style:normal;
+  }
+
+  /* ── CONTEÚDO ── */
+  .content{
+    max-width:700px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+  .secao{
+    margin-bottom:48px;
+    animation:fadeUp .6s ease both;
+  }
+  .secao:nth-child(2){animation-delay:.1s;}
+  .secao:nth-child(3){animation-delay:.2s;}
+  .secao:nth-child(4){animation-delay:.3s;}
+  .secao:nth-child(5){animation-delay:.4s;}
+  .secao:nth-child(6){animation-delay:.5s;}
+
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  .num-secao{
+    font-family:'Cinzel',serif;
+    font-size:.6rem;
+    letter-spacing:3px;
+    color:var(--gold);
+    margin-bottom:8px;
+    opacity:.7;
+  }
+  .secao h2{
+    font-family:'Cinzel',serif;
+    font-size:1.2rem;
+    font-weight:600;
+    color:var(--gold2);
+    margin-bottom:16px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--border);
+  }
+  .secao p{
+    color:rgba(240,237,230,.85);
+    margin-bottom:14px;
+  }
+  .secao p:last-child{margin-bottom:0;}
+
+  /* ── VERSÍCULO INLINE ── */
+  .v-inline{
+    background:rgba(201,168,76,.06);
+    border-left:2px solid var(--gold);
+    padding:12px 18px;
+    margin:18px 0;
+    border-radius:0 8px 8px 0;
+    font-style:italic;
+    color:var(--gold3);
+    font-size:1rem;
+  }
+
+  /* ── REFLEXÃO ── */
+  .reflexao{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:28px;
+    margin:48px 0;
+  }
+  .reflexao h3{
+    font-family:'Cinzel',serif;
+    font-size:.7rem;
+    letter-spacing:3px;
+    color:var(--gold);
+    margin-bottom:20px;
+  }
+  .reflexao ol{
+    padding-left:20px;
+  }
+  .reflexao li{
+    color:rgba(240,237,230,.8);
+    margin-bottom:12px;
+    padding-left:6px;
+  }
+
+  /* ── ORAÇÃO ── */
+  .oracao{
+    background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(10,22,40,.8));
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:32px;
+    margin-top:48px;
+    text-align:center;
+  }
+  .oracao .icon{font-size:2rem;margin-bottom:16px;color:var(--gold);}
+  .oracao h3{
+    font-family:'Cinzel',serif;
+    font-size:.7rem;
+    letter-spacing:3px;
+    color:var(--gold);
+    margin-bottom:20px;
+  }
+  .oracao p{
+    font-style:italic;
+    color:rgba(240,237,230,.8);
+    max-width:500px;
+    margin:0 auto;
+    line-height:1.9;
+  }
+
+  /* ── FOOTER ── */
+  .footer{
+    border-top:1px solid var(--border);
+    padding:24px;
+    text-align:center;
+    font-family:'Cinzel',serif;
+    font-size:.6rem;
+    letter-spacing:2px;
+    color:var(--muted);
+  }
+  .footer a{color:var(--gold);text-decoration:none;}
+
+  /* ── MOBILE ── */
+  @media(max-width:600px){
+    .hero{padding:60px 20px 40px;}
+    .content{padding:0 20px 60px;}
+    .v-card{padding:20px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html">&#8592; Voltar ao Portal</a>
+  <span>/</span>
+  <span>Nossos Estudos</span>
+</header>
+
+<section class="hero">
+  <div class="categoria">✦ ESTUDO BÍBLICO</div>
+  <h1>O Senhor é Meu Pastor</h1>
+  <p class="ref">SALMO 23 · Davi</p>
+  <p class="intro">Uma meditação sobre a provisão, proteção e presença de Deus em cada etapa da vida do crente.</p>
+</section>
+
+<div class="versiculo-destaque">
+  <div class="v-card">
+    <p>O Senhor é o meu pastor; nada me faltará. Deitar-me faz em verdes pastos, guia-me mansamente a águas tranquilas.</p>
+    <span class="ref-small">Salmo 23:1-2</span>
+  </div>
+</div>
+
+<div class="divider"><span>✦ ✦ ✦</span></div>
+
+<div class="content">
+
+  <div class="secao">
+    <div class="num-secao">INTRODUÇÃO</div>
+    <h2>Um Salmo Para Toda a Vida</h2>
+    <p>O Salmo 23 é provavelmente o texto mais amado de toda a Bíblia. Escrito por Davi — um pastor que se tornou rei — ele descreve com beleza poética a relação íntima entre o crente e Deus. Não é um salmo de circunstância: é uma declaração de fé forjada na experiência real de quem conhece o cuidado do Senhor.</p>
+    <p>Em apenas seis versículos, Davi percorre toda a jornada da vida: os momentos de descanso e abundância, os vales sombrios de dificuldade, e a chegada gloriosa à casa do Pai. Cada imagem revela um aspecto do caráter de Deus como nosso Pastor.</p>
+  </div>
+
+  <div class="secao">
+    <div class="num-secao">PARTE 1 — VERSÍCULOS 1 E 2</div>
+    <h2>O Pastor que Provê</h2>
+    <div class="v-inline">"O Senhor é o meu pastor; nada me faltará." — Sl 23:1</div>
+    <p>A declaração de abertura é uma das afirmações mais ousadas da fé bíblica. Davi não diz "o Senhor <em>será</em> meu pastor" — ele diz "o Senhor <em>é</em> meu pastor", no presente, agora. É uma fé que não espera a crise para se firmar.</p>
+    <p>A palavra hebraica para "pastor" (ro'eh) carrega a ideia de alguém que conhece cada ovelha pelo nome, que cuida, alimenta e protege. Para Davi, que foi pastor de verdade, isso não era metáfora vazia — era experiência vivida projetada na relação com Deus.</p>
+    <p>"Nada me faltará" não significa ausência de dificuldades, mas plenitude de provisão. O Pastor garante que nenhuma necessidade essencial ficará sem resposta.</p>
+  </div>
+
+  <div class="secao">
+    <div class="num-secao">PARTE 2 — VERSÍCULOS 3 E 4</div>
+    <h2>O Pastor que Guia e Protege</h2>
+    <div class="v-inline">"Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum, porque tu estás comigo." — Sl 23:4</div>
+    <p>O "vale da sombra da morte" é uma das imagens mais poderosas da Escritura. Em hebraico, <em>tsalmáveth</em> pode significar "trevas profundas" ou "sombra de morte" — um lugar de perigo real, não imaginado. Davi não promete que o crente nunca passará por esses vales. Ele promete que não passará <em>sozinho</em>.</p>
+    <p>A virada mais significativa do salmo acontece aqui: o discurso muda de terceira pessoa ("ele me faz deitar") para segunda pessoa ("tu estás comigo"). No vale, Davi não fala <em>sobre</em> Deus — ele fala <em>com</em> Deus. A intimidade cresce justamente no momento de maior provação.</p>
+    <p>O cajado e o vara do pastor não são ornamentos — são instrumentos de guia e defesa. O Senhor usa ambos: ele corrige e ele protege. O crente precisa de ambos.</p>
+  </div>
+
+  <div class="secao">
+    <div class="num-secao">PARTE 3 — VERSÍCULO 5</div>
+    <h2>A Mesa Preparada Diante dos Inimigos</h2>
+    <div class="v-inline">"Preparas uma mesa diante de mim na presença dos meus adversários." — Sl 23:5</div>
+    <p>A imagem muda: não estamos mais no campo com as ovelhas, mas numa festa. Deus não apenas livra o seu povo dos inimigos — ele o honra <em>na presença</em> deles. A bênção de Deus é pública, visível, inegável.</p>
+    <p>Ungir a cabeça com óleo era sinal de honra e alegria no Oriente Antigo. A "taça que transborda" fala de uma bênção que vai além do necessário — não apenas suficiente, mas abundante. Deus não é um Pai que dá o mínimo; ele é um Pai que esbanja generosidade.</p>
+  </div>
+
+  <div class="secao">
+    <div class="num-secao">PARTE 4 — VERSÍCULO 6</div>
+    <h2>A Certeza do Destino Final</h2>
+    <div class="v-inline">"Bondade e misericórdia me seguirão todos os dias da minha vida, e habitarei na casa do Senhor para sempre." — Sl 23:6</div>
+    <p>O salmo termina não com um pedido, mas com uma certeza. "Bondade e misericórdia" (em hebraico, <em>tov</em> e <em>hesed</em>) são atributos do caráter imutável de Deus. Eles não dependem do desempenho do crente — eles seguem quem pertence ao Senhor.</p>
+    <p>A palavra "seguirão" em hebraico pode ser traduzida como "perseguirão". A bondade de Deus nos persegue com a mesma determinação com que o mundo tenta nos derrubar. No final, vence a graça.</p>
+    <p>E o destino final? "A casa do Senhor para sempre." Não uma visita, não um abrigo temporário — uma morada eterna. O Pastor não apenas cuida das ovelhas no campo; ele as leva para casa.</p>
+  </div>
+
+  <div class="reflexao">
+    <h3>✦ PERGUNTAS PARA REFLEXÃO</h3>
+    <ol>
+      <li>Em qual "vale" você está caminhando agora? Como a presença de Deus muda sua perspectiva sobre esse momento?</li>
+      <li>Quais "verdes pastos" Deus já preparou para você — momentos de descanso e provisão que você às vezes esquece de agradecer?</li>
+      <li>O que significa para você que a bondade e a misericórdia de Deus te "perseguem" todos os dias?</li>
+      <li>Como você pode tornar a declaração "O Senhor é meu pastor" mais do que palavras — uma realidade vivida nesta semana?</li>
+    </ol>
+  </div>
+
+  <div class="oracao">
+    <div class="icon">🙏</div>
+    <h3>✦ ORAÇÃO</h3>
+    <p>Senhor, obrigado por seres meu Pastor. Nos momentos de abundância e nos vales de sombra, tua presença é suficiente. Que eu possa caminhar este dia com a certeza de que nada me faltará — porque Tu estás comigo. Amém.</p>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <a href="index.html">Igreja Manancial de Vida</a> · Campos dos Goytacazes, RJ · Todos os direitos reservados
+</footer>
+
+</body>
+</html>
