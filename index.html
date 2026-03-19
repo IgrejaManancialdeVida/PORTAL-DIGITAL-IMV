@@ -1088,10 +1088,17 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
     <div class="sh-ln"></div>
   </div>
   <div class="estudos-grid rv" id="estudos-grid">
-    <div class="estudos-empty">
-      <i class="fas fa-book-open-reader"></i>
-      <p>Nenhum estudo publicado ainda.</p>
-    </div>
+    <a href="estudos/salmo-23.html" class="card-estudo">
+      <div class="ce-img">
+        <img src="assets/salmo23-thumb.png" alt="Salmo 23" onerror="this.style.display='none'">
+        <div class="ce-img-fallback"><i class="fas fa-book-open"></i></div>
+      </div>
+      <div class="ce-body">
+        <span class="ce-cat">Estudo Bíblico</span>
+        <h3 class="ce-titulo">O Senhor é Meu Pastor — Salmo 23</h3>
+        <p class="ce-trecho">Uma meditação sobre a provisão, proteção e presença de Deus em cada etapa da vida do crente.</p>
+      </div>
+    </a>
   </div>
   <div class="adm-bar rv" id="bar-estudos" style="margin-top:18px">
     <button class="btn-adm" onclick="O('admin-estudos')"><i class="fas fa-plus"></i> Adicionar Estudo</button>
