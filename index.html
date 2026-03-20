@@ -1846,9 +1846,7 @@ function renderMedia(){
   });
 }
 
-function saveMediaFb(){fbReady(async()=>{try{const{doc,setDoc}=window._F;await setDoc(doc(window._db,'portal','midia'),{items:medias},{merge:false});}catch(e){toast('⚠️ Erro ao salvar mídias');}});}
-function loadMediaFb(){fbReady(async()=>{try{const{doc,getDoc}=window._F;const snap=await getDoc(doc(window._db,'portal','midia'));if(snap.exists()){const d=snap.data();if(d.items&&Array.isArray(d.items)){medias=d.items;renderMedia();}}}catch(e){}});}
-renderMedia();loadMediaFb();
+renderMedia();
 /* ── LIGHTBOX ── */
 function LB(on){document.getElementById('lb').style.display=on?'flex':'none';}
 
