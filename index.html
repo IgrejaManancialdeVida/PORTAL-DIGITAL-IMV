@@ -1828,28 +1828,6 @@ function renderTest(){
 }
 
 /* ── MÍDIA ── */
-function abrirModalMidia(){
-  const tipo=prompt('Tipo de mídia:\n1 — Foto (URL do GitHub)\n2 — Vídeo (link do YouTube)\n\nDigite 1 ou 2:');
-  if(!tipo)return;
-  if(tipo==='1'){
-    const url=prompt('Cole a URL da foto no GitHub:\nEx: https://igrejamanancialdevida.github.io/PORTAL-DIGITAL-IMV/assets/foto1.jpg');
-    if(!url||!url.trim())return;
-    medias.push({u:url.trim(),t:'i'});
-  } else if(tipo==='2'){
-    const url=prompt('Cole o link do YouTube:\nEx: https://youtu.be/ABC123');
-    if(!url||!url.trim())return;
-    medias.push({u:url.trim(),t:'v'});
-  } else {toast('Digite 1 ou 2');return;}
-  renderMedia();
-  saveMediaFb();
-}
-let medias=[];
-function limparMidias(){
-  if(!confirm('Remover todas as mídias?'))return;
-  medias=[];
-  renderMedia();
-  saveMediaFb();
-}
 
 function renderMedia(){
   const g=document.getElementById('midia-g');
