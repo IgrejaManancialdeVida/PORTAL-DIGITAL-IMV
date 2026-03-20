@@ -1898,7 +1898,7 @@ function initPortal(){
         if(d.radioUrl){ESTACOES[3].url=d.radioUrl;buildRadStns();}
         if(d.bib){const e=document.getElementById('bib-text');if(e){e.textContent=d.bib;e.className='';} }
         if(d.bibImg){const im=document.getElementById('bib-img');if(im){im.src=d.bibImg;im.style.display='block';}}
-        const ytSrc=d.ytUrl&&d.ytUrl.trim()?d.ytUrl.trim():'https://www.youtube.com/embed/live_stream?channel=UCManancialDeVida&autoplay=0';setCulto(ytSrc,false);
+     const agendado=d.ytAgendado&&d.ytAgendado.trim();const ytSrc=d.ytUrl&&d.ytUrl.trim()?(agendado&&new Date(agendado)>new Date()?'':d.ytUrl.trim()):'';setCulto(ytSrc,false);
         if(d.endereco){document.getElementById('end-txt').textContent=d.endereco;}
         if(d.mapsUrl){const mw=document.querySelector('.mapa-wrap');if(mw){let u=d.mapsUrl;if(u.includes('maps.google.com/maps?')&&!u.includes('/embed'))u=u.replace('maps.google.com/maps?','maps.google.com/maps/embed?');mw.innerHTML='<iframe src="'+u+'" style="width:100%;height:100%;border:none;" allowfullscreen loading="lazy"></iframe>';}}
       }
