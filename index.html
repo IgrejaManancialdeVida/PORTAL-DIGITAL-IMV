@@ -290,35 +290,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 .ministerios-slider .min-card{flex:0 0 clamp(160px,40vw,220px);scroll-snap-align:start;}
 @media(min-width:820px){.ministerios-slider{overflow-x:visible;flex-wrap:wrap;}.ministerios-slider .min-card{flex:1 1 160px;}}
 
-/* ── CONFIGURAÇÃO DO BOTÃO VOLTAR AO TOPO ── */
-#back-top {
-  position: fixed !important;
-  bottom: 28px !important;
-  left: 22px !important;    /* Movido para a esquerda */
-  right: auto !important;   /* Anula a posição antiga na direita */
-  
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold), var(--gold2));
-  color: var(--navy);
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(201,168,76, .45);
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999 !important; /* Camada máxima para não sumir */
-  
-  /* Efeito de visibilidade */
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(12px);
-  transition: opacity .3s, transform .3s, background .3s;
-}
-
+#back-top{position:fixed!important;bottom:28px!important;left:22px!important;right:auto!important;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.1);font-size:.75rem;cursor:pointer;box-shadow:none;display:flex;align-items:center;justify-content:center;z-index:99999!important;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s,background .3s;}
+#back-top:hover{background:rgba(201,168,76,.15);color:var(--gold);border-color:var(--gold);}
+#back-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
 /* Estado visível (acionado pelo JavaScript ao rolar a página) */
 #back-top {
   position: fixed;
