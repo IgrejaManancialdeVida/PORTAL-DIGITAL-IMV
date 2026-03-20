@@ -1915,7 +1915,7 @@ async function saveAll(){
   try{
     // limpar ID do YouTube — remover &t=... e extrair só o ID
     var ytRaw=(document.getElementById('adm-yt')||{}).value||'';
-    ytRaw=ytRaw.trim().split('&')[0].split('?v=').pop().split('/').pop();
+  ytRaw=ytRaw.trim();
     var yt=ytRaw;
     var b=(document.getElementById('adm-bib')||{}).value||''; b=b.trim();
     var rad=(document.getElementById('adm-rad')||{}).value||''; rad=rad.trim();
