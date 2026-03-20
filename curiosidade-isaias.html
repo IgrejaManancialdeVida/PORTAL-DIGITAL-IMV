@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Curiosidade Bíblica — O Profeta Isaías | Igreja Manancial de Vida</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#050d1a;--bg2:#0a1628;--bg3:#0f2040;
+    --gold:#c9a84c;--gold2:#e2c06a;--gold3:#f0d080;
+    --white:#f0ede6;--muted:#8899aa;--border:rgba(201,168,76,.18);--card:rgba(255,255,255,.04);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--white);font-family:'Crimson Pro',Georgia,serif;font-size:1.1rem;line-height:1.8;min-height:100vh;}
+
+  /* HEADER */
+  .site-header{background:rgba(5,13,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;}
+  .site-header a{color:var(--gold);text-decoration:none;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:2px;opacity:.8;transition:opacity .2s;}
+  .site-header a:hover{opacity:1;}
+  .site-header span{color:var(--muted);font-size:.8rem;}
+
+  /* HERO COM FUNDO */
+  .hero{
+    position:relative;
+    padding:100px 24px 80px;
+    text-align:center;
+    overflow:hidden;
+    min-height:360px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+  }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,.08) 0%, transparent 70%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(201,168,76,.02) 40px,
+        rgba(201,168,76,.02) 41px
+      );
+  }
+  .hero-sigla{
+    position:absolute;
+    font-family:'Cinzel',serif;
+    font-size:clamp(8rem,25vw,18rem);
+    font-weight:700;
+    color:rgba(201,168,76,.04);
+    letter-spacing:-10px;
+    user-select:none;
+    line-height:1;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    white-space:nowrap;
+  }
+  .categoria{display:inline-block;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:4px;color:var(--gold);border:1px solid var(--border);padding:5px 14px;border-radius:20px;margin-bottom:24px;background:rgba(201,168,76,.07);position:relative;z-index:1;}
+  .hero h1{font-family:'Cinzel',serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;color:var(--gold2);line-height:1.25;max-width:700px;margin:0 auto 14px;text-shadow:0 2px 30px rgba(201,168,76,.3);position:relative;z-index:1;}
+  .hero .sub{font-size:1rem;color:rgba(240,237,230,.6);font-style:italic;position:relative;z-index:1;max-width:500px;}
+
+  /* CURIOSIDADE DESTAQUE */
+  .curiosidade-box{
+    max-width:740px;
+    margin:0 auto;
+    padding:0 24px 60px;
+  }
+  .curiosidade-num{
+    font-family:'Cinzel',serif;
+    font-size:.55rem;
+    letter-spacing:5px;
+    color:var(--gold);
+    opacity:.6;
+    text-align:center;
+    margin-bottom:40px;
+    margin-top:48px;
+  }
+
+  /* BLOCO DE CURIOSIDADE */
+  .curio{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:32px;
+    margin-bottom:24px;
+    position:relative;
+    overflow:hidden;
+    animation:fadeUp .6s ease both;
+  }
+  .curio::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .curio:nth-child(2){animation-delay:.1s;}
+  .curio:nth-child(3){animation-delay:.2s;}
+  .curio:nth-child(4){animation-delay:.3s;}
+  .curio:nth-child(5){animation-delay:.4s;}
+
+  .curio-label{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .curio-label::after{content:'';flex:1;height:1px;background:var(--border);}
+  .curio h2{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold2);margin-bottom:14px;line-height:1.4;}
+  .curio p{color:rgba(240,237,230,.82);margin-bottom:12px;}
+  .curio p:last-child{margin-bottom:0;}
+
+  /* VERSÍCULO */
+  .versiculo{
+    background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(201,168,76,.02));
+    border-left:3px solid var(--gold);
+    border-radius:0 10px 10px 0;
+    padding:16px 20px;
+    margin:18px 0;
+    font-style:italic;
+    color:var(--gold3);
+    font-size:1rem;
+    position:relative;
+  }
+  .versiculo::before{content:'"';position:absolute;top:-8px;left:12px;font-family:'Cinzel',serif;font-size:3rem;color:var(--gold);opacity:.2;line-height:1;}
+  .versiculo span{display:block;margin-top:8px;font-size:.75rem;color:var(--muted);font-style:normal;font-family:'Cinzel',serif;letter-spacing:1px;}
+
+  /* REFLEXÃO FINAL */
+  .reflexao-final{
+    background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(10,22,40,.8));
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:36px;
+    margin-top:48px;
+    text-align:center;
+  }
+  .reflexao-final .icon{font-size:2rem;color:var(--gold);margin-bottom:16px;}
+  .reflexao-final h3{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;color:var(--gold);margin-bottom:18px;}
+  .reflexao-final p{font-style:italic;color:rgba(240,237,230,.8);max-width:520px;margin:0 auto;line-height:1.9;}
+
+  /* FOOTER */
+  .footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:2px;color:var(--muted);}
+  .footer a{color:var(--gold);text-decoration:none;}
+
+  @media(max-width:600px){
+    .hero{padding:70px 20px 50px;}
+    .curiosidade-box{padding:0 20px 50px;}
+    .curio{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html">&#8592; Voltar ao Portal</a>
+  <span>/</span>
+  <span>Curiosidades da Bíblia</span>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-sigla">ISA</div>
+  <div class="categoria">✦ CURIOSIDADE BÍBLICA</div>
+  <h1>O Profeta Isaías</h1>
+  <p class="sub">O "Evangelho do Antigo Testamento" — o profeta que anunciou Cristo séculos antes de seu nascimento</p>
+</section>
+
+<div class="curiosidade-box">
+
+  <div class="curiosidade-num">✦ CURIOSIDADES ✦</div>
+
+  <div class="curio">
+    <div class="curio-label">✦ CURIOSIDADE 01</div>
+    <h2>Isaías é o profeta mais citado no Novo Testamento</h2>
+    <p>Nenhum outro livro profético do Antigo Testamento é citado com tanta frequência no Novo Testamento quanto Isaías. Jesus, Paulo, João e os outros apóstolos recorrem a ele dezenas de vezes — mais de 400 citações diretas ou alusões ao longo de todo o NT.</p>
+    <p>Isso levou muitos teólogos a chamá-lo de <em>"o apóstolo do Antigo Testamento"</em> ou o <em>"quinto evangelista"</em>, tamanha a riqueza de suas profecias messiânicas.</p>
+    <div class="versiculo">
+      Portanto, o Senhor mesmo vos dará um sinal: eis que a virgem conceberá e dará à luz um filho e chamará o seu nome Emanuel.
+      <span>Isaías 7:14</span>
+    </div>
+  </div>
+
+  <div class="curio">
+    <div class="curio-label">✦ CURIOSIDADE 02</div>
+    <h2>O livro de Isaías tem a mesma estrutura da Bíblia</h2>
+    <p>Uma das curiosidades mais fascinantes é que o livro de Isaías possui <strong>66 capítulos</strong> — exatamente o mesmo número de livros da Bíblia. E assim como a Bíblia se divide em Antigo Testamento (39 livros) e Novo Testamento (27 livros), Isaías se divide em duas partes: os primeiros 39 capítulos (julgamento e lei) e os últimos 27 capítulos (conforto e graça).</p>
+    <p>Coincidência ou providência? Para muitos estudiosos, isso é mais uma evidência da unidade e inspiração divina das Escrituras.</p>
+  </div>
+
+  <div class="curio">
+    <div class="curio-label">✦ CURIOSIDADE 03</div>
+    <h2>Isaías 53 — escrita 700 anos antes da cruz</h2>
+    <p>O capítulo 53 de Isaías descreve com detalhes impressionantes a paixão e morte de Jesus Cristo — escrito aproximadamente 700 anos antes do nascimento de Cristo. O texto fala de alguém que seria desprezado, ferido pelas nossas transgressões, e que carregaria os pecados de muitos.</p>
+    <p>Quando os escribas e fariseus leram esse texto no primeiro século, reconheceram imediatamente do que ele falava — o debate era sobre quem seria esse servo sofredor. A resposta, revelada na cruz, mudou a história do mundo.</p>
+    <div class="versiculo">
+      Mas ele foi ferido por causa das nossas transgressões e moído por causa das nossas iniquidades; o castigo que nos traz a paz estava sobre ele, e pelas suas pisaduras fomos sarados.
+      <span>Isaías 53:5</span>
+    </div>
+  </div>
+
+  <div class="curio">
+    <div class="curio-label">✦ CURIOSIDADE 04</div>
+    <h2>Isaías viu a glória de Deus e sobreviveu</h2>
+    <p>No capítulo 6, Isaías descreve uma visão extraordinária: ele vê o Senhor assentado num trono alto e sublime, cercado de serafins que clamam "Santo, Santo, Santo". A reação de Isaías é imediata: <em>"Ai de mim! Pois estou perdido!"</em></p>
+    <p>Essa visão transformou completamente o profeta. Um serafim tocou seus lábios com uma brasa do altar e disse que sua iniquidade havia sido tirada. Isaías então respondeu ao chamado divino com uma das declarações mais conhecidas da Bíblia.</p>
+    <div class="versiculo">
+      Então ouvi a voz do Senhor que dizia: A quem enviarei, e quem há de ir por nós? Respondi: Eis-me aqui, envia-me a mim.
+      <span>Isaías 6:8</span>
+    </div>
+  </div>
+
+  <div class="reflexao-final">
+    <div class="icon">✦</div>
+    <h3>MENSAGEM DE FUNDO</h3>
+    <p>Isaías nos ensina que Deus fala antes de agir — e que sua Palavra é fiel além de gerações. O mesmo Deus que enviou seu Filho conforme prometido é o mesmo que hoje cumpre cada promessa em sua vida. Confie na Palavra que não falha.</p>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <a href="index.html">Igreja Manancial de Vida</a> · Campos dos Goytacazes, RJ · Todos os direitos reservados
+</footer>
+
+</body>
+</html>
