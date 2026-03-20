@@ -1617,13 +1617,14 @@ buildRadStns();
 let curYt='';
 function ytId(u){if(!u)return null;const m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|live\/|shorts\/))([^&\n?#]+)/);if(m)return m[1];if(/^[a-zA-Z0-9_-]{11}$/.test(u.trim()))return u.trim();return null;}
 function setCulto(url,ap=false){
-  curYt=url;const fr=document.getElementById('yt-fr');const ph=document.getElementById('yt-ph');const dot=document.getElementById('c-dot');const st=document.getElementById('c-stat');
-  if(!url){fr.src='';fr.style.display='none';ph.style.display='flex';dot.className='c-dot';st.textContent='Aguardando link do culto...';document.getElementById('live-pill').className='live-pill off';document.getElementById('live-txt').textContent='CANAL';return;}
+  curYt=url;const fr=document.getElementById('yt-fr');const ph=document.getElementById('yt-ph');const dot=document.getElementById('c-dot');const st=document.getElementById('c-stat');const btnAbrir=document.getElementById('btn-yt-abrir');
+  if(!url){fr.src='';fr.style.display='none';ph.style.display='flex';dot.className='c-dot';st.textContent='Aguardando link do culto...';document.getElementById('live-pill').className='live-pill off';document.getElementById('live-txt').textContent='CANAL';if(btnAbrir)btnAbrir.style.display='none';return;}
   const id=ytId(url);
   fr.src=id?`https://www.youtube.com/embed/${id}?${ap?'autoplay=1&':''}rel=0&modestbranding=1`:url;
   fr.style.display='block';ph.style.display='none';dot.className='c-dot '+(ap?'live':'ready');
   st.textContent=ap?'● Ao vivo — assistindo agora':'Culto disponível';
   document.getElementById('live-pill').className='live-pill';document.getElementById('live-txt').textContent=ap?'AO VIVO':'CULTO';
+  if(btnAbrir){btnAbrir.href=url;btnAbrir.style.display='inline-flex';}
 }
 function loadYT(){const url=document.getElementById('yt-in').value.trim();if(!url){toast('Cole o link');return;}setCulto(url,true);curYt=url;document.getElementById('yt-ctrl').style.display='none';fbReady(async()=>{try{const{doc,setDoc}=window._F;await setDoc(doc(window._db,'portal','config'),{ytUrl:url,ytAgendado:''},{merge:true});}catch(e){}});}
 function showYtCtrl(){const c=document.getElementById('yt-ctrl');c.style.display=c.style.display==='none'?'flex':'none';if(curYt)document.getElementById('yt-in').value=curYt;}
