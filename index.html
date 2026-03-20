@@ -1630,8 +1630,7 @@ function showYtCtrl(){const c=document.getElementById('yt-ctrl');c.style.display
 function clearCulto(){if(!confirm('Remover culto?'))return;setCulto('');saveCultoFb('');}
 function admHint(){if(!logado)toast('🔐 Faça login para publicar o culto');else O('admin');}
 function fsYT(){const w=document.getElementById('yt-wrap');document.fullscreenElement?document.exitFullscreen():w.requestFullscreen&&w.requestFullscreen();}
-async function saveCultoFb(url){fbReady(async()=>{try{const{doc,setDoc}=window._F;await setDoc(doc(window._db,'portal','config'),{ytUrl:url},{merge:true});}catch(e){}});}
-
+async function saveCultoFb(url){fbReady(async()=>{try{const{doc,setDoc}=window._F;await setDoc(doc(window._db,'portal','config'),{ytUrl:url,ytAgendado:''},{merge:true});}catch(e){}});}
 /* ── IMAGENS ── */
 function prevImg(id,inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{const i=document.getElementById(id);i.src=e.target.result;i.style.display='block';};r.readAsDataURL(f);}
 function editTxt(id,label){const el=document.getElementById(id);const cur=el.classList.contains('ph')?'':el.textContent;const novo=prompt('Editar — '+label+':',cur);if(novo===null)return;el.textContent=novo||el.textContent;el.className=novo?'':'ph';}
