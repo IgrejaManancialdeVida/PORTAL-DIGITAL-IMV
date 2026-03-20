@@ -1625,7 +1625,7 @@ function setCulto(url,ap=false){
   st.textContent=ap?'● Ao vivo — assistindo agora':'Culto disponível';
   document.getElementById('live-pill').className='live-pill';document.getElementById('live-txt').textContent=ap?'AO VIVO':'CULTO';
 }
-function loadYT(){const url=document.getElementById('yt-in').value.trim();if(!url){toast('Cole o link');return;}setCulto(url,true);document.getElementById('yt-ctrl').style.display='none';if(logado)saveCultoFb(url);}
+function loadYT(){const url=document.getElementById('yt-in').value.trim();if(!url){toast('Cole o link');return;}setCulto(url,true);curYt=url;document.getElementById('yt-ctrl').style.display='none';fbReady(async()=>{try{const{doc,setDoc}=window._F;await setDoc(doc(window._db,'portal','config'),{ytUrl:url,ytAgendado:''},{merge:true});}catch(e){}});}
 function showYtCtrl(){const c=document.getElementById('yt-ctrl');c.style.display=c.style.display==='none'?'flex':'none';if(curYt)document.getElementById('yt-in').value=curYt;}
 function clearCulto(){if(!confirm('Remover culto?'))return;setCulto('');saveCultoFb('');}
 function admHint(){if(!logado)toast('🔐 Faça login para publicar o culto');else O('admin');}
