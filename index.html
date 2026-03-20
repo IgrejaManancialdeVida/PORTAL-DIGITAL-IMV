@@ -1195,15 +1195,14 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
       </div>
       <input type="file" id="inp-bib" accept="image/*" onchange="prevImg('bib-img',this)"/>
     </div>
-    <div class="card">
-      <div class="sh" style="margin-bottom:14px"><div class="sh-ic" style="background:linear-gradient(135deg,#1a3a6c,#0d1f40);color:#7ab4ff;width:32px;height:32px"><i class="fas fa-photo-video" style="font-size:.78rem"></i></div><h2>Mídia e Comunicação</h2><div class="sh-ln"></div></div>
-      <div class="midia-grid" id="midia-g"></div>
-      <div class="adm-bar" id="bar-midia">
-        <button class="btn-adm" onclick="document.getElementById('inp-midia').click()"><i class="fas fa-cloud-upload-alt"></i> Upload</button>
-      </div>
-      <input type="file" id="inp-midia" accept="image/*,video/*" multiple onchange="addMedia(this)"/>
-    </div>
+  <div class="card">
+  <div class="sh" style="margin-bottom:14px"><div class="sh-ic" style="background:linear-gradient(135deg,#1a3a6c,#0d1f40);color:#7ab4ff;width:32px;height:32px"><i class="fas fa-photo-video" style="font-size:.78rem"></i></div><h2>Mídia e Comunicação</h2><div class="sh-ln"></div></div>
+  <div class="midia-grid" id="midia-g"></div>
+  <div class="adm-bar" id="bar-midia">
+    <button class="btn-adm" onclick="abrirModalMidia()"><i class="fas fa-plus"></i> Adicionar Mídia</button>
+    <button class="btn-adm" onclick="limparMidias()"><i class="fas fa-trash"></i> Limpar Tudo</button>
   </div>
+</div>
 </section>
 
 <!-- ══ MINISTÉRIOS ══ -->
@@ -1829,14 +1828,70 @@ function renderTest(){
 }
 
 /* ── MÍDIA ── */
-let medias=[];
-function renderMedia(){
-  const g=document.getElementById('midia-g');g.innerHTML='';const total=Math.max(medias.length,6);
-  for(let i=0;i<total;i++){const d=document.createElement('div');d.className='m-cell';if(medias[i]){if(medias[i].t==='v'){const v=document.createElement('video');v.src=medias[i].u;v.muted=v.loop=v.autoplay=true;v.setAttribute('playsinline','');d.appendChild(v);}else{const im=document.createElement('img');im.src=medias[i].u;im.onclick=()=>{document.getElementById('lb-img').src=medias[i].u;LB(true);};d.appendChild(im);}if(logado){const x=document.createElement('button');x.className='m-del';x.innerHTML='<i class="fas fa-times"></i>';const idx=i;x.onclick=()=>{medias.splice(idx,1);renderMedia();saveMediaFb();};d.appendChild(x);}}else{d.innerHTML='<div class="m-empty"><i class="fas fa-image"></i></div>';}g.appendChild(d);}
+function abrirModalMidia(){
+  const tipo=prompt('Tipo de mídia:\n1 — Foto (URL do GitHub)\n2 — Vídeo (link do YouTube)\n\nDigite 1 ou 2:');
+  if(!tipo)return;
+  if(tipo==='1'){
+    const url=prompt('Cole a URL da foto no GitHub:\nEx: https://igrejamanancialdevida.github.io/PORTAL-DIGITAL-IMV/assets/foto1.jpg');
+    if(!url||!url.trim())return;
+    medias.push({u:url.trim(),t:'i'});
+  } else if(tipo==='2'){
+    const url=prompt('Cole o link do YouTube:\nEx: https://youtu.be/ABC123');
+    if(!url||!url.trim())return;
+    medias.push({u:url.trim(),t:'v'});
+  } else {toast('Digite 1 ou 2');return;}
+  renderMedia();
+  saveMediaFb();
 }
-function saveMediaFb(){fbReady(async()=>{try{const{doc,setDoc}=window._F;await setDoc(doc(window._db,'portal','midia'),{items:medias},{merge:false});}catch(e){}});}
+
+function limparMidias(){
+  if(!confirm('Remover todas as mídias?'))return;
+  medias=[];
+  renderMedia();
+  saveMediaFb();
+}
+
+function renderMedia(){
+  const g=document.getElementById('midia-g');
+  g.innerHTML='';
+  const total=Math.max(medias.length,6);
+  for(let i=0;i<total;i++){
+    const d=document.createElement('div');
+    d.className='m-cell';
+    if(medias[i]){
+      if(medias[i].t==='v'){
+        const id=ytId(medias[i].u);
+        if(id){
+          const iframe=document.createElement('iframe');
+          iframe.src=`https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`;
+          iframe.style.cssText='width:100%;height:100%;border:none;';
+          iframe.allow='fullscreen';
+          d.appendChild(iframe);
+        }
+      } else {
+        const im=document.createElement('img');
+        im.src=medias[i].u;
+        im.style.cssText='width:100%;height:100%;object-fit:cover;';
+        im.onclick=()=>{document.getElementById('lb-img').src=medias[i].u;LB(true);};
+        d.appendChild(im);
+      }
+      if(logado){
+        const x=document.createElement('button');
+        x.className='m-del';
+        x.innerHTML='<i class="fas fa-times"></i>';
+        const idx=i;
+        x.onclick=()=>{medias.splice(idx,1);renderMedia();saveMediaFb();};
+        d.appendChild(x);
+      }
+    } else {
+      d.innerHTML='<div class="m-empty"><i class="fas fa-image"></i></div>';
+    }
+    g.appendChild(d);
+  }
+}
+
+function saveMediaFb(){fbReady(async()=>{try{const{doc,setDoc}=window._F;await setDoc(doc(window._db,'portal','midia'),{items:medias},{merge:false});}catch(e){toast('⚠️ Erro ao salvar mídias');}});}
 function loadMediaFb(){fbReady(async()=>{try{const{doc,getDoc}=window._F;const snap=await getDoc(doc(window._db,'portal','midia'));if(snap.exists()){const d=snap.data();if(d.items&&Array.isArray(d.items)){medias=d.items;renderMedia();}}}catch(e){}});}
-function addMedia(inp){[...inp.files].forEach(f=>{const r=new FileReader();r.onload=e=>{medias.push({u:e.target.result,t:f.type.startsWith('video')?'v':'i'});renderMedia();saveMediaFb();};r.readAsDataURL(f);});}
 renderMedia();loadMediaFb();
 
 /* ── LIGHTBOX ── */
