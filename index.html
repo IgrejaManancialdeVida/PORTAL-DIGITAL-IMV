@@ -1854,40 +1854,18 @@ function limparMidias(){
 function renderMedia(){
   const g=document.getElementById('midia-g');
   g.innerHTML='';
-  const total=Math.max(medias.length,6);
-  for(let i=0;i<total;i++){
+  const fotos=['midia1.jpg','midia2.jpg','midia3.jpg','midia4.jpg','midia5.jpg','midia6.jpg'];
+  fotos.forEach(function(nome){
     const d=document.createElement('div');
     d.className='m-cell';
-    if(medias[i]){
-      if(medias[i].t==='v'){
-        const id=ytId(medias[i].u);
-        if(id){
-          const iframe=document.createElement('iframe');
-          iframe.src=`https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`;
-          iframe.style.cssText='width:100%;height:100%;border:none;';
-          iframe.allow='fullscreen';
-          d.appendChild(iframe);
-        }
-      } else {
-        const im=document.createElement('img');
-        im.src=medias[i].u;
-        im.style.cssText='width:100%;height:100%;object-fit:cover;';
-        im.onclick=()=>{document.getElementById('lb-img').src=medias[i].u;LB(true);};
-        d.appendChild(im);
-      }
-      if(logado){
-        const x=document.createElement('button');
-        x.className='m-del';
-        x.innerHTML='<i class="fas fa-times"></i>';
-        const idx=i;
-        x.onclick=()=>{medias.splice(idx,1);renderMedia();saveMediaFb();};
-        d.appendChild(x);
-      }
-    } else {
-      d.innerHTML='<div class="m-empty"><i class="fas fa-image"></i></div>';
-    }
+    const im=document.createElement('img');
+    im.src='assets/'+nome;
+    im.style.cssText='width:100%;height:100%;object-fit:cover;';
+    im.onerror=function(){d.innerHTML='<div class="m-empty"><i class="fas fa-image"></i></div>';};
+    im.onclick=function(){document.getElementById('lb-img').src=im.src;LB(true);};
+    d.appendChild(im);
     g.appendChild(d);
-  }
+  });
 }
 
 function saveMediaFb(){fbReady(async()=>{try{const{doc,setDoc}=window._F;await setDoc(doc(window._db,'portal','midia'),{items:medias},{merge:false});}catch(e){toast('⚠️ Erro ao salvar mídias');}});}
