@@ -806,6 +806,15 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
 .nc-adm-upload:hover{background:rgba(201,168,76,.14);}
 @media(max-width:600px){.nc-thumbs{grid-template-columns:repeat(3,1fr);}.nc-thumb img{height:54px;}}
 
+.filial-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:18px;padding:32px 24px;text-align:center;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;}
+.filial-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.06),transparent);pointer-events:none;}
+.filial-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(201,168,76,.12);}
+.filial-icon{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#1a3a6e,#0d2044);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.3rem;color:var(--gold);}
+.filial-num{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:4px;color:var(--gold);opacity:.5;margin-bottom:8px;}
+.filial-nome{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:2px;color:var(--gold2);margin-bottom:10px;}
+.filial-desc{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:16px;}
+.filial-end{font-size:.75rem;color:rgba(255,255,255,.3);border-top:1px solid var(--border);padding-top:12px;display:flex;align-items:center;justify-content:center;gap:6px;}
+.filial-end i{color:var(--gold);opacity:.6;}
 </style>
 
 <style>
