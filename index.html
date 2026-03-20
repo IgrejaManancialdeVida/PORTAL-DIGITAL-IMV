@@ -1914,16 +1914,16 @@ function initPortal(){
 
 async function saveAll(){
   try{
-    // limpar ID do YouTube — remover &t=... e extrair só o ID
-    var ytRaw=(document.getElementById('adm-yt')||{}).value||'';
-  ytRaw=ytRaw.trim();
+   var ytRaw=(document.getElementById('adm-yt')||{}).value||'';
+    ytRaw=ytRaw.trim();
+    var ytData=(document.getElementById('adm-yt-data')||{}).value||'';
     var yt=ytRaw;
     var b=(document.getElementById('adm-bib')||{}).value||''; b=b.trim();
     var rad=(document.getElementById('adm-rad')||{}).value||''; rad=rad.trim();
     var end=(document.getElementById('adm-end')||{}).value||''; end=end.trim();
     var mapsEl=document.getElementById('adm-maps'); var maps=mapsEl?mapsEl.value.trim():'';
     var pwEl=document.getElementById('adm-pw'); var newPw=pwEl?pwEl.value.trim():'';
-    if(yt)setCulto(yt,false);
+    if(yt&&!ytData)setCulto(yt,false);
     var be=document.getElementById('bib-text');if(be){be.textContent=b||'Curiosidade bíblica ainda não publicada.';be.className=b?'':'ph';}
     if(rad&&ESTACOES[3]){ESTACOES[3].url=rad;buildRadStns();}
     var endEl=document.getElementById('end-txt');if(end&&endEl)endEl.textContent=end;
@@ -1939,7 +1939,7 @@ async function saveAll(){
         var F=window._F;var db=window._db;
         var bibImgEl=document.getElementById('bib-img');
         var bibImg=bibImgEl&&bibImgEl.src&&!bibImgEl.src.endsWith('#')?bibImgEl.src:'';
-        var data={bib:b,ytUrl:yt,radioUrl:rad,endereco:end,mapsUrl:maps,bibImg:bibImg};
+        var data={bib:b,ytUrl:yt,ytAgendado:ytData,radioUrl:rad,endereco:end,mapsUrl:maps,bibImg:bibImg};
         if(newPw&&newPw.length>=6)data.senha=newPw;
         await F.setDoc(F.doc(db,'portal','config'),data,{merge:true});
         toast('✅ Publicado no Firebase!');
