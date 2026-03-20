@@ -2518,52 +2518,7 @@ fbReady(async function() {
 </script>
 
 
-<script>
-const params = new URLSearchParams(window.location.search);
-const isAdmin = params.get("modo")==="admin";
 
-const zone = document.getElementById("admin-zone");
-if(isAdmin){ zone.style.display="flex"; }
-
-document.getElementById("btn-edit-portal")?.addEventListener("click",()=>{
-  const senha = prompt("Senha:");
-  if(senha==="Manancial@2026"){
-    document.querySelectorAll("h2,p,span,.pastor-nome,.pastor-titulo")
-    document.getElementById("btn-save-portal").style.display="inline-block";
-  }
-});
-document.getElementById("btn-save-portal")?.addEventListener("click", async () => {
-  try {
-    const F = window._F; 
-    const db = window._db;
-    
-    let dadosPastores = {};
-    document.querySelectorAll('.pastor-card').forEach((card, i) => {
-      dadosPastores['pastor_' + i] = {
-        nome: card.querySelector('.pastor-nome')?.innerText,
-        titulo: card.querySelector('.pastor-titulo')?.innerText,
-        foto: card.querySelector('.pastor-foto')?.src
-      };
-    });
-
-    await F.setDoc(F.doc(db, 'portal', 'pastores'), dadosPastores);
-    alert("✅ Alterações gravadas com sucesso!");
-    location.reload(); 
-  } catch(e) {
-    alert("Erro ao salvar: " + e.message);
-  }
-});
-
-// trocar foto pastores
-document.querySelectorAll('.pastor img').forEach(img=>{
-  img.addEventListener('click',()=>{
-    if(isAdmin){
-      const url = prompt("Nova imagem:");
-      if(url){ img.src=url; }
-    }
-  });
-});
-</script>
 
 </body>
 </html>
