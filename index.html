@@ -1389,11 +1389,13 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
     <button class="m-x" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
     <h2>⚙️ Painel Administrativo</h2>
     <p class="m-sub" id="adm-fb-st">Verificando Firebase...</p>
-    <div style="background:rgba(192,39,45,.08);border:1px solid rgba(192,39,45,.3);border-radius:13px;padding:15px 17px;margin-bottom:18px">
-      <div style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;color:#ff8888;margin-bottom:9px"><i class="fab fa-youtube"></i> LINK DO CULTO</div>
-      <input class="adm-in yt-hi" id="adm-yt" type="text" placeholder="https://youtu.be/... ou https://youtube.com/live/..."/>
-      <div style="font-size:.7rem;color:rgba(255,255,255,.25);margin-top:7px;line-height:1.6">Cole o link antes do culto — todos os membros verão automaticamente.</div>
-    </div>
+   <div style="background:rgba(192,39,45,.08);border:1px solid rgba(192,39,45,.3);border-radius:13px;padding:15px 17px;margin-bottom:18px">
+  <div style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;color:#ff8888;margin-bottom:9px"><i class="fab fa-youtube"></i> LINK DO CULTO</div>
+  <input class="adm-in yt-hi" id="adm-yt" type="text" placeholder="https://youtu.be/... ou https://youtube.com/live/..."/>
+  <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:9px;margin-bottom:7px">⏰ Agendar exibição (opcional)</div>
+  <input class="adm-in" id="adm-yt-data" type="datetime-local" style="margin-bottom:6px"/>
+  <div style="font-size:.7rem;color:rgba(255,255,255,.25);margin-top:4px;line-height:1.6">Se agendado, o culto só aparece na data/hora marcada. Deixe em branco para exibir imediatamente.</div>
+</div>
     <div class="adm-g"><label>Curiosidades da Bíblia</label><textarea class="adm-ta" id="adm-bib" placeholder="Curiosidade bíblica..."></textarea></div>
     <div class="adm-g"><label>Rádio da Igreja — URL ZenoMedia (Manancial FM)</label><input class="adm-in" id="adm-rad" type="text" placeholder="https://stream.zeno.fm/... (aparecerá como 4ª estação no player)"/></div>
     <div class="adm-g"><label>Endereço da Igreja</label><input class="adm-in" id="adm-end" type="text" placeholder="Rua X, Nº Y, Bairro, Campos dos Goytacazes"/></div>
