@@ -210,6 +210,21 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
     alert("Devocional pronto para ser salvo no Firebase!");
     location.reload();
   }
+<script>
+let _seq='';
+document.addEventListener('keydown',function(e){
+  _seq+=e.key;
+  if(_seq.includes('adm')){
+    var z=document.getElementById('admin-zone');
+    z.style.display=z.style.display==='none'?'flex':'none';
+    _seq='';
+  }
+  if(_seq.length>10)_seq='';
+});
+</script>
+</body>
+</html>
+
 </script>
 </body>
 </html>
