@@ -29,7 +29,7 @@ body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);mi
 .sh-ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
 .sh h2{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold2);}
 .sh-ln{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent);}
-.ev-destaque{position:relative;border-radius:var(--r2);overflow:hidden;margin-bottom:40px;cursor:pointer;}
+.ev-destaque{position:relative;border-radius:var(--r2);overflow:hidden;margin-bottom:40px;}
 .ev-destaque img{width:100%;height:clamp(200px,28vw,340px);object-fit:cover;filter:brightness(.4);display:block;}
 .ev-destaque-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,15,42,.95) 0%,transparent 60%);}
 .ev-destaque-body{position:absolute;bottom:0;left:0;right:0;padding:28px 32px;}
@@ -66,17 +66,24 @@ body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);mi
 .share-wpp{border-color:rgba(37,211,102,.35);color:#25d366;} .share-wpp:hover{background:rgba(37,211,102,.12);}
 .share-copy{border-color:rgba(201,168,76,.35);color:var(--gold);} .share-copy:hover{background:rgba(201,168,76,.1);}
 footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);color:rgba(255,255,255,.2);font-size:.68rem;letter-spacing:1px;}
-.btn-edit-mode{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid var(--gold);padding:8px 18px;border-radius:20px;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:1px;cursor:pointer;transition:var(--t);}
-.btn-save-mode{background:#25d366;color:white;border:none;padding:8px 18px;border-radius:20px;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:1px;cursor:pointer;}
-[contenteditable="true"]{outline:2px dashed var(--gold);background:rgba(201,168,76,.08);border-radius:8px;padding:2px 5px;}
+/* ADMIN */
+.admin-bar{display:none;justify-content:flex-end;align-items:center;gap:10px;padding:10px 28px;background:rgba(201,168,76,.06);border-bottom:1px solid var(--border);}
+.admin-bar.on{display:flex;}
+.btn-adm{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:7px 16px;border-radius:20px;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:1px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:var(--t);}
+.btn-adm:hover{background:rgba(201,168,76,.2);}
+.btn-adm-green{background:rgba(37,211,102,.12);color:#25d366;border:1px solid rgba(37,211,102,.3);}
+.btn-adm-red{background:rgba(192,39,45,.1);color:#ff9999;border:1px solid rgba(192,39,45,.3);}
+[contenteditable="true"]{outline:2px dashed var(--gold) !important;background:rgba(201,168,76,.08) !important;border-radius:6px;padding:2px 4px;cursor:text;}
 @media(max-width:600px){.content-wrap{padding:32px 16px 60px;}.topbar{padding:10px 16px;}.ev-item{flex-direction:column;}.ev-date-col{flex-direction:row;gap:6px;min-width:unset;border-right:none;border-bottom:1px solid var(--border);padding:10px 18px;}.ev-day{font-size:1.2rem;}}
 </style>
 </head>
 <body>
 
-<div class="admin-zone" id="admin-zone" style="display:none;justify-content:flex-end;padding:12px 28px;">
-  <button class="btn-edit-mode" id="edit-btn" onclick="toggleEdit()"><i class="fas fa-edit"></i> EDITAR EVENTOS</button>
-  <button class="btn-save-mode" id="save-btn" onclick="saveChanges()" style="display:none"><i class="fas fa-save"></i> SALVAR</button>
+<div class="admin-bar" id="admin-bar">
+  <span style="font-family:'Cinzel',serif;font-size:.58rem;color:var(--gold);letter-spacing:2px;margin-right:auto;">✦ MODO ADMIN</span>
+  <button class="btn-adm" id="btn-editar" onclick="ativarEdicao()"><i class="fas fa-edit"></i> Editar Tudo</button>
+  <button class="btn-adm btn-adm-green" id="btn-salvar" style="display:none" onclick="salvarFirebase()"><i class="fas fa-save"></i> Salvar no Firebase</button>
+  <button class="btn-adm btn-adm-red" id="btn-cancelar" style="display:none" onclick="cancelarEdicao()"><i class="fas fa-times"></i> Cancelar</button>
 </div>
 
 <div class="topbar">
@@ -89,8 +96,8 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
   <div class="hero-ov"></div>
   <div class="hero-cnt">
     <span class="hero-cat"><i class="fas fa-calendar-days"></i> AGENDA</span>
-    <h1 class="hero-title">Próximos Eventos</h1>
-    <span class="hero-sub">Fique por dentro de tudo que está acontecendo</span>
+    <h1 class="hero-title" id="f-titulo">Próximos Eventos</h1>
+    <span class="hero-sub" id="f-sub">Fique por dentro de tudo que está acontecendo</span>
   </div>
 </div>
 
@@ -106,12 +113,12 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
     <div class="ev-destaque-ov"></div>
     <div class="ev-destaque-body">
       <span class="ev-badge"><i class="fas fa-fire"></i> EM DESTAQUE</span>
-      <h2>Conferência Anual de Adoração</h2>
-      <p>Um fim de semana inteiro mergulhado na presença de Deus. Louvor, pregação apostólica e momentos de transformação para toda a família.</p>
+      <h2 id="f-dest-titulo">Conferência Anual de Adoração</h2>
+      <p id="f-dest-desc">Um fim de semana inteiro mergulhado na presença de Deus. Louvor, pregação apostólica e momentos de transformação para toda a família.</p>
       <div class="ev-meta">
-        <span><i class="fas fa-calendar"></i> Abril 2026</span>
-        <span><i class="fas fa-clock"></i> Sexta 19h às Domingo 21h</span>
-        <span><i class="fas fa-map-marker-alt"></i> Sede da Igreja</span>
+        <span><i class="fas fa-calendar"></i> <span id="f-dest-data">Abril 2026</span></span>
+        <span><i class="fas fa-clock"></i> <span id="f-dest-hora">Sexta 19h às Domingo 21h</span></span>
+        <span><i class="fas fa-map-marker-alt"></i> <span id="f-dest-local">Sede da Igreja</span></span>
       </div>
     </div>
   </div>
@@ -121,7 +128,7 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
     <h2>Agenda Completa</h2><div class="sh-ln"></div>
   </div>
 
-  <div class="ev-list">
+  <div class="ev-list" id="ev-list">
     <div class="ev-item">
       <div class="ev-date-col"><div class="ev-day">18</div><div class="ev-month">Mar</div></div>
       <div class="ev-body">
@@ -179,8 +186,8 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
   </div>
 
   <div class="cta-box">
-    <h3>Fique por Dentro</h3>
-    <p>Receba avisos de novos eventos diretamente no seu WhatsApp. Entre em contato conosco e peça para ser adicionado à lista de transmissão da Igreja Manancial de Vida.</p>
+    <h3 id="f-cta-titulo">Fique por Dentro</h3>
+    <p id="f-cta-desc">Receba avisos de novos eventos diretamente no seu WhatsApp. Entre em contato conosco e peça para ser adicionado à lista de transmissão da Igreja Manancial de Vida.</p>
     <a class="btn-wpp" href="https://wa.me/5522998754159?text=Ol%C3%A1!%20Quero%20receber%20avisos%20de%20eventos%20da%20Igreja%20Manancial%20de%20Vida." target="_blank"><i class="fab fa-whatsapp"></i> Receber Avisos pelo WhatsApp</a>
   </div>
 
@@ -193,25 +200,60 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
 
 <footer>© Igreja Manancial de Vida — Todos os direitos reservados</footer>
 
-<script>
-function toggleEdit(){
-  const isEditing=document.getElementById('save-btn').style.display==='block';
-  const fields=document.querySelectorAll('.ev-day,.ev-month,.ev-body h3,.ev-body p,.ev-hora,.ev-destaque-body h2,.ev-destaque-body p');
-  if(!isEditing){
-    fields.forEach(el=>el.contentEditable='true');
-    document.getElementById('save-btn').style.display='block';
-    document.getElementById('edit-btn').innerHTML='<i class="fas fa-times"></i> CANCELAR';
-  } else {location.reload();}
+<script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import {getFirestore,doc,getDoc,setDoc} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const app=initializeApp({apiKey:"AIzaSyDH1s-OQkSsEk784K-moyNlI4jXnckAZh4",authDomain:"portal-digital-imv.firebaseapp.com",projectId:"portal-digital-imv",storageBucket:"portal-digital-imv.firebasestorage.app",messagingSenderId:"951892474691",appId:"1:951892474691:web:4d13ef26a8b05462df0df6"});
+const db=getFirestore(app);
+
+const IDS=['f-titulo','f-sub','f-dest-titulo','f-dest-desc','f-dest-data','f-dest-hora','f-dest-local','f-cta-titulo','f-cta-desc'];
+
+async function carregar(){
+  try{
+    const snap=await getDoc(doc(db,'paginas','proximos-eventos'));
+    if(snap.exists()){
+      const d=snap.data();
+      IDS.forEach(id=>{if(d[id]){const el=document.getElementById(id);if(el)el.textContent=d[id];}});
+      if(d.evList)document.getElementById('ev-list').innerHTML=d.evList;
+    }
+  }catch(e){console.warn(e);}
 }
-function saveChanges(){alert('Salvo!');location.reload();}
+carregar();
+
+window.salvarFirebase=async function(){
+  try{
+    const dados={};
+    IDS.forEach(id=>{const el=document.getElementById(id);if(el)dados[id]=el.textContent;});
+    dados.evList=document.getElementById('ev-list').innerHTML;
+    await setDoc(doc(db,'paginas','proximos-eventos'),dados,{merge:true});
+    alert('✅ Salvo com sucesso!');
+    window.cancelarEdicao();
+  }catch(e){alert('⚠️ Erro: '+e.message);}
+};
+</script>
+
+<script>
+window.ativarEdicao=function(){
+  const ids=['f-titulo','f-sub','f-dest-titulo','f-dest-desc','f-dest-data','f-dest-hora','f-dest-local','f-cta-titulo','f-cta-desc'];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el)el.contentEditable='true';});
+  document.querySelectorAll('.ev-day,.ev-month,.ev-body h3,.ev-body p,.ev-hora').forEach(el=>el.contentEditable='true');
+  document.getElementById('btn-editar').style.display='none';
+  document.getElementById('btn-salvar').style.display='inline-flex';
+  document.getElementById('btn-cancelar').style.display='inline-flex';
+};
+
+window.cancelarEdicao=function(){
+  document.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
+  document.getElementById('btn-editar').style.display='inline-flex';
+  document.getElementById('btn-salvar').style.display='none';
+  document.getElementById('btn-cancelar').style.display='none';
+};
+
 let _seq='';
 document.addEventListener('keydown',function(e){
   _seq+=e.key;
-  if(_seq.includes('adm')){
-    var z=document.getElementById('admin-zone');
-    z.style.display=z.style.display==='none'?'flex':'none';
-    _seq='';
-  }
+  if(_seq.includes('adm')){document.getElementById('admin-bar').classList.toggle('on');_seq='';}
   if(_seq.length>10)_seq='';
 });
 </script>
