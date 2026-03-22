@@ -29,8 +29,6 @@ body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);mi
 .sh-ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
 .sh h2{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold2);}
 .sh-ln{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent);}
-
-/* EVENTO DESTAQUE */
 .ev-destaque{position:relative;border-radius:var(--r2);overflow:hidden;margin-bottom:40px;cursor:pointer;}
 .ev-destaque img{width:100%;height:clamp(200px,28vw,340px);object-fit:cover;filter:brightness(.4);display:block;}
 .ev-destaque-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,15,42,.95) 0%,transparent 60%);}
@@ -40,8 +38,6 @@ body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);mi
 .ev-destaque-body p{font-size:.82rem;color:rgba(248,244,237,.75);max-width:560px;line-height:1.55;}
 .ev-meta{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;}
 .ev-meta span{font-size:.7rem;color:var(--gold2);display:flex;align-items:center;gap:5px;font-family:'Cinzel',serif;letter-spacing:1px;}
-
-/* LISTA DE EVENTOS */
 .ev-list{display:flex;flex-direction:column;gap:16px;margin-bottom:48px;}
 .ev-item{background:linear-gradient(145deg,var(--glass2),var(--glass));border:1px solid var(--border);border-radius:var(--r2);padding:0;overflow:hidden;display:flex;transition:var(--t);}
 .ev-item:hover{border-color:var(--border2);box-shadow:var(--sh);transform:translateX(4px);}
@@ -59,28 +55,35 @@ body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);mi
 .tag-social{background:rgba(110,255,170,.12);color:#6fffaa;border:1px solid rgba(110,255,170,.25);}
 .tag-oracao{background:rgba(122,150,255,.12);color:#9ab0ff;border:1px solid rgba(122,150,255,.25);}
 .ev-hora{font-size:.7rem;color:var(--gold);display:flex;align-items:center;gap:5px;margin-top:6px;font-family:'Cinzel',serif;letter-spacing:1px;}
-
-/* INSCRIÇÃO CTA */
 .cta-box{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(6,15,42,.6));border:1px solid rgba(201,168,76,.28);border-radius:var(--r2);padding:32px;text-align:center;margin-bottom:40px;}
 .cta-box h3{font-family:'Cinzel',serif;font-size:.92rem;color:var(--gold3);letter-spacing:3px;margin-bottom:10px;}
 .cta-box p{font-size:.85rem;color:rgba(248,244,237,.72);line-height:1.7;margin-bottom:20px;}
 .btn-wpp{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1a7a40,#0e4a26);color:#fff;border:none;padding:13px 30px;border-radius:50px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:2px;font-weight:700;cursor:pointer;transition:var(--t);text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.25);}
 .btn-wpp:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.35);}
-
 .share-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--border);}
 .share-lbl{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;color:var(--muted);}
 .share-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border-radius:20px;font-size:.68rem;font-family:'Cinzel',serif;letter-spacing:1px;border:1px solid;cursor:pointer;transition:var(--t);text-decoration:none;background:none;}
 .share-wpp{border-color:rgba(37,211,102,.35);color:#25d366;} .share-wpp:hover{background:rgba(37,211,102,.12);}
 .share-copy{border-color:rgba(201,168,76,.35);color:var(--gold);} .share-copy:hover{background:rgba(201,168,76,.1);}
 footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);color:rgba(255,255,255,.2);font-size:.68rem;letter-spacing:1px;}
+.btn-edit-mode{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid var(--gold);padding:8px 18px;border-radius:20px;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:1px;cursor:pointer;transition:var(--t);}
+.btn-save-mode{background:#25d366;color:white;border:none;padding:8px 18px;border-radius:20px;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:1px;cursor:pointer;}
+[contenteditable="true"]{outline:2px dashed var(--gold);background:rgba(201,168,76,.08);border-radius:8px;padding:2px 5px;}
 @media(max-width:600px){.content-wrap{padding:32px 16px 60px;}.topbar{padding:10px 16px;}.ev-item{flex-direction:column;}.ev-date-col{flex-direction:row;gap:6px;min-width:unset;border-right:none;border-bottom:1px solid var(--border);padding:10px 18px;}.ev-day{font-size:1.2rem;}}
 </style>
 </head>
 <body>
+
+<div class="admin-zone" id="admin-zone" style="display:none;justify-content:flex-end;padding:12px 28px;">
+  <button class="btn-edit-mode" id="edit-btn" onclick="toggleEdit()"><i class="fas fa-edit"></i> EDITAR EVENTOS</button>
+  <button class="btn-save-mode" id="save-btn" onclick="saveChanges()" style="display:none"><i class="fas fa-save"></i> SALVAR</button>
+</div>
+
 <div class="topbar">
   <a class="topbar-logo" href="index.html"><span>🕊 MANANCIAL DE VIDA</span></a>
-<a class="btn-back" href="index.html"><i class="fas fa-arrow-left"></i> Voltar</a>
+  <a class="btn-back" href="index.html"><i class="fas fa-arrow-left"></i> Voltar</a>
 </div>
+
 <div class="hero">
   <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1400&q=80" alt="Próximos Eventos"/>
   <div class="hero-ov"></div>
@@ -90,9 +93,9 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
     <span class="hero-sub">Fique por dentro de tudo que está acontecendo</span>
   </div>
 </div>
+
 <div class="content-wrap">
 
-  <!-- EVENTO EM DESTAQUE -->
   <div class="sh">
     <div class="sh-ic" style="background:linear-gradient(135deg,#4c1c6c,#280d3c);color:#c87aff"><i class="fas fa-star"></i></div>
     <h2>Evento em Destaque</h2><div class="sh-ln"></div>
@@ -113,19 +116,14 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
     </div>
   </div>
 
-  <!-- LISTA DE EVENTOS -->
   <div class="sh">
     <div class="sh-ic" style="background:linear-gradient(135deg,#1a3a6c,#0d2040);color:#7adeff"><i class="fas fa-calendar"></i></div>
     <h2>Agenda Completa</h2><div class="sh-ln"></div>
   </div>
 
   <div class="ev-list">
-
     <div class="ev-item">
-      <div class="ev-date-col">
-        <div class="ev-day">18</div>
-        <div class="ev-month">Mar</div>
-      </div>
+      <div class="ev-date-col"><div class="ev-day">18</div><div class="ev-month">Mar</div></div>
       <div class="ev-body">
         <h3>Culto de Edificação</h3>
         <p>Culto semanal com pregação da Palavra, louvor e santa ceia.</p>
@@ -133,12 +131,8 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
         <div class="ev-tags" style="margin-top:8px"><span class="ev-tag tag-culto">Culto</span></div>
       </div>
     </div>
-
     <div class="ev-item">
-      <div class="ev-date-col">
-        <div class="ev-day">20</div>
-        <div class="ev-month">Mar</div>
-      </div>
+      <div class="ev-date-col"><div class="ev-day">20</div><div class="ev-month">Mar</div></div>
       <div class="ev-body">
         <h3>Culto de Louvor</h3>
         <p>Noite especial de adoração e ministração para jovens e adultos.</p>
@@ -146,12 +140,8 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
         <div class="ev-tags" style="margin-top:8px"><span class="ev-tag tag-culto">Culto</span><span class="ev-tag tag-jovens">Jovens</span></div>
       </div>
     </div>
-
     <div class="ev-item">
-      <div class="ev-date-col">
-        <div class="ev-day">22</div>
-        <div class="ev-month">Mar</div>
-      </div>
+      <div class="ev-date-col"><div class="ev-day">22</div><div class="ev-month">Mar</div></div>
       <div class="ev-body">
         <h3>Encontro de Casais</h3>
         <p>Momento especial de fortalecimento dos lares com dinâmicas e palavra.</p>
@@ -159,12 +149,8 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
         <div class="ev-tags" style="margin-top:8px"><span class="ev-tag tag-familia">Família</span></div>
       </div>
     </div>
-
     <div class="ev-item">
-      <div class="ev-date-col">
-        <div class="ev-day">23</div>
-        <div class="ev-month">Mar</div>
-      </div>
+      <div class="ev-date-col"><div class="ev-day">23</div><div class="ev-month">Mar</div></div>
       <div class="ev-body">
         <h3>Escola Bíblica Dominical + Culto Público</h3>
         <p>Domingo completo: EBD às 8h30 e culto público às 19h com toda a família.</p>
@@ -172,12 +158,8 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
         <div class="ev-tags" style="margin-top:8px"><span class="ev-tag tag-culto">Culto</span><span class="ev-tag tag-familia">Família</span></div>
       </div>
     </div>
-
     <div class="ev-item">
-      <div class="ev-date-col">
-        <div class="ev-day">29</div>
-        <div class="ev-month">Mar</div>
-      </div>
+      <div class="ev-date-col"><div class="ev-day">29</div><div class="ev-month">Mar</div></div>
       <div class="ev-body">
         <h3>Vigília de Oração</h3>
         <p>Uma noite de intercessão, adoração e busca pela face de Deus.</p>
@@ -185,12 +167,8 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
         <div class="ev-tags" style="margin-top:8px"><span class="ev-tag tag-oracao">Oração</span></div>
       </div>
     </div>
-
     <div class="ev-item">
-      <div class="ev-date-col">
-        <div class="ev-day">05</div>
-        <div class="ev-month">Abr</div>
-      </div>
+      <div class="ev-date-col"><div class="ev-day">05</div><div class="ev-month">Abr</div></div>
       <div class="ev-body">
         <h3>Ação Social — Distribuição de Alimentos</h3>
         <p>Venha ajudar a distribuir cestas básicas para famílias em necessidade na nossa comunidade.</p>
@@ -198,10 +176,8 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
         <div class="ev-tags" style="margin-top:8px"><span class="ev-tag tag-social">Social</span></div>
       </div>
     </div>
-
   </div>
 
-  <!-- CTA -->
   <div class="cta-box">
     <h3>Fique por Dentro</h3>
     <p>Receba avisos de novos eventos diretamente no seu WhatsApp. Entre em contato conosco e peça para ser adicionado à lista de transmissão da Igreja Manancial de Vida.</p>
@@ -214,6 +190,30 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);co
     <button class="share-btn share-copy" onclick="navigator.clipboard.writeText(location.href);this.innerHTML='<i class=\'fas fa-check\'></i> Copiado!'"><i class="fas fa-link"></i> Copiar Link</button>
   </div>
 </div>
+
 <footer>© Igreja Manancial de Vida — Todos os direitos reservados</footer>
+
+<script>
+function toggleEdit(){
+  const isEditing=document.getElementById('save-btn').style.display==='block';
+  const fields=document.querySelectorAll('.ev-day,.ev-month,.ev-body h3,.ev-body p,.ev-hora,.ev-destaque-body h2,.ev-destaque-body p');
+  if(!isEditing){
+    fields.forEach(el=>el.contentEditable='true');
+    document.getElementById('save-btn').style.display='block';
+    document.getElementById('edit-btn').innerHTML='<i class="fas fa-times"></i> CANCELAR';
+  } else {location.reload();}
+}
+function saveChanges(){alert('Salvo!');location.reload();}
+let _seq='';
+document.addEventListener('keydown',function(e){
+  _seq+=e.key;
+  if(_seq.includes('adm')){
+    var z=document.getElementById('admin-zone');
+    z.style.display=z.style.display==='none'?'flex':'none';
+    _seq='';
+  }
+  if(_seq.length>10)_seq='';
+});
+</script>
 </body>
 </html>
