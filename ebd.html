@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EBD – Escola Bíblica Dominical | Igreja Manancial de Vida</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕊</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{--navy:#060f2a;--navy2:#0a1628;--gold:#c9a84c;--gold2:#e8c96a;--gold3:#f5e0a0;--white:#f8f4ed;--muted:#8a9ab8;--border:rgba(201,168,76,.18);--border2:rgba(201,168,76,.5);--glass:rgba(255,255,255,.04);--glass2:rgba(255,255,255,.08);--r:16px;--r2:22px;--sh:0 8px 40px rgba(0,0,0,.5);--t:all .3s cubic-bezier(.4,0,.2,1);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);min-height:100vh;}
+::-webkit-scrollbar{width:5px;} ::-webkit-scrollbar-track{background:var(--navy2);} ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px;}
+.topbar{background:rgba(4,10,26,.97);border-bottom:1px solid var(--border);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);}
+.topbar-logo{text-decoration:none;} .topbar-logo span{font-family:'Cinzel',serif;font-size:.78rem;color:var(--gold3);letter-spacing:2px;}
+.btn-back{display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:var(--gold);padding:7px 16px;border-radius:20px;font-size:.67rem;font-family:'Cinzel',serif;letter-spacing:1px;text-decoration:none;transition:var(--t);}
+.btn-back:hover{background:rgba(201,168,76,.2);border-color:var(--gold);}
+.hero{position:relative;height:clamp(240px,32vw,420px);overflow:hidden;}
+.hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.3) saturate(1.1);}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(0deg,var(--navy) 0%,rgba(6,15,42,.1) 55%,transparent 100%);}
+.hero-cnt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center;}
+.hero-cat{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:4px;color:var(--gold);background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);padding:5px 16px;border-radius:20px;display:inline-flex;align-items:center;gap:7px;}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.5rem,4.5vw,3rem);font-weight:900;color:var(--white);letter-spacing:5px;filter:drop-shadow(0 2px 16px rgba(0,0,0,.7));}
+.hero-sub{font-size:clamp(.7rem,1.4vw,.85rem);color:var(--gold2);letter-spacing:3px;}
+.content-wrap{max-width:1100px;margin:0 auto;padding:48px 24px 80px;}
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.sh-ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+.sh h2{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold2);}
+.sh-ln{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent);}
+
+/* DESTAQUE */
+.destaque-ebd{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(10,22,40,.8));border:1px solid var(--border);border-radius:var(--r2);padding:36px;margin-bottom:48px;text-align:center;}
+.destaque-ebd .icon{font-size:2.5rem;margin-bottom:16px;}
+.destaque-ebd h2{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold2);letter-spacing:3px;margin-bottom:12px;}
+.destaque-ebd p{font-size:.92rem;color:rgba(248,244,237,.8);line-height:1.8;max-width:600px;margin:0 auto 20px;}
+.ebd-horario{display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,.12);border:1px solid var(--border);border-radius:30px;padding:10px 24px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:2px;color:var(--gold2);}
+
+/* CLASSES GRID */
+.classes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-bottom:48px;}
+.classe-card{background:linear-gradient(145deg,var(--glass2),var(--glass));border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:var(--t);position:relative;}
+.classe-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.classe-card:hover{transform:translateY(-5px);border-color:var(--border2);box-shadow:var(--sh);}
+.classe-card-top{padding:26px 24px 18px;display:flex;align-items:flex-start;gap:16px;}
+.classe-ic{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+.classe-info h3{font-family:'Cinzel',serif;font-size:.85rem;color:var(--white);letter-spacing:1px;margin-bottom:4px;line-height:1.3;}
+.classe-nome{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:2px;margin-top:4px;}
+.classe-desc{padding:0 24px 24px;font-size:.8rem;line-height:1.7;color:rgba(248,244,237,.7);}
+
+/* VERSÍCULO */
+.verse-strip{border-left:4px solid var(--gold);background:linear-gradient(145deg,var(--glass2),var(--glass));border-radius:0 var(--r2) var(--r2) 0;padding:24px 28px;margin-bottom:40px;}
+.verse-strip p{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(.92rem,2vw,1.1rem);line-height:1.85;color:var(--white);margin-bottom:8px;}
+.verse-strip span{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:3px;color:var(--gold2);}
+
+/* CTA */
+.cta-box{background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(6,15,42,.6));border:1px solid rgba(201,168,76,.22);border-radius:var(--r2);padding:32px;text-align:center;margin-bottom:40px;}
+.cta-box h3{font-family:'Cinzel',serif;font-size:.88rem;color:var(--gold3);letter-spacing:3px;margin-bottom:10px;}
+.cta-box p{font-size:.85rem;color:rgba(248,244,237,.72);line-height:1.7;margin-bottom:20px;}
+.btn-wpp{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1a7a40,#0e4a26);color:#fff;border:none;padding:13px 30px;border-radius:50px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:2px;font-weight:700;cursor:pointer;transition:var(--t);text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.25);}
+.btn-wpp:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.35);}
+
+.share-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--border);}
+.share-lbl{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;color:var(--muted);}
+.share-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border-radius:20px;font-size:.68rem;font-family:'Cinzel',serif;letter-spacing:1px;border:1px solid;cursor:pointer;transition:var(--t);text-decoration:none;background:none;}
+.share-wpp{border-color:rgba(37,211,102,.35);color:#25d366;} .share-wpp:hover{background:rgba(37,211,102,.12);}
+.share-copy{border-color:rgba(201,168,76,.35);color:var(--gold);} .share-copy:hover{background:rgba(201,168,76,.1);}
+footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);color:rgba(255,255,255,.2);font-size:.68rem;letter-spacing:1px;}
+
+/* ADMIN */
+.admin-bar{display:none;justify-content:flex-end;align-items:center;gap:10px;padding:10px 28px;background:rgba(201,168,76,.06);border-bottom:1px solid var(--border);}
+.admin-bar.on{display:flex;}
+.btn-adm{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:7px 16px;border-radius:20px;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:1px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:var(--t);}
+.btn-adm:hover{background:rgba(201,168,76,.2);}
+.btn-adm-green{background:rgba(37,211,102,.12);color:#25d366;border:1px solid rgba(37,211,102,.3);}
+.btn-adm-red{background:rgba(192,39,45,.1);color:#ff9999;border:1px solid rgba(192,39,45,.3);}
+[contenteditable="true"]{outline:2px dashed var(--gold) !important;background:rgba(201,168,76,.08) !important;border-radius:6px;padding:2px 4px;cursor:text;}
+@media(max-width:600px){.content-wrap{padding:32px 16px 60px;}.topbar{padding:10px 16px;}.classes-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="admin-bar" id="admin-bar">
+  <span style="font-family:'Cinzel',serif;font-size:.58rem;color:var(--gold);letter-spacing:2px;margin-right:auto;">✦ MODO ADMIN</span>
+  <button class="btn-adm" id="btn-editar" onclick="ativarEdicao()"><i class="fas fa-edit"></i> Editar Tudo</button>
+  <button class="btn-adm btn-adm-green" id="btn-salvar" style="display:none" onclick="salvarFirebase()"><i class="fas fa-save"></i> Salvar no Firebase</button>
+  <button class="btn-adm btn-adm-red" id="btn-cancelar" style="display:none" onclick="cancelarEdicao()"><i class="fas fa-times"></i> Cancelar</button>
+</div>
+
+<div class="topbar">
+  <a class="topbar-logo" href="index.html"><span>🕊 MANANCIAL DE VIDA</span></a>
+  <a class="btn-back" href="index.html"><i class="fas fa-arrow-left"></i> Voltar</a>
+</div>
+
+<div class="hero">
+  <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1400&q=80" alt="EBD"/>
+  <div class="hero-ov"></div>
+  <div class="hero-cnt">
+    <span class="hero-cat"><i class="fas fa-book-bible"></i> ESCOLA BÍBLICA DOMINICAL</span>
+    <h1 class="hero-title" id="f-titulo">EBD</h1>
+    <span class="hero-sub" id="f-sub">Estudos Bíblicos em Classes — Todo Domingo</span>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="destaque-ebd">
+    <div class="icon">📖</div>
+    <h2 id="f-dest-titulo">Escola Bíblica Dominical</h2>
+    <p id="f-dest-desc">A EBD é o momento em que nos reunimos para estudar a Palavra de Deus em grupos organizados por faixa etária. Um tempo de aprendizado, comunhão e crescimento espiritual para toda a família.</p>
+    <div class="ebd-horario"><i class="fas fa-clock"></i> <span id="f-horario">Todo Domingo — 8h30 às 10h30</span></div>
+  </div>
+
+  <div class="sh">
+    <div class="sh-ic" style="background:linear-gradient(135deg,#1a3a6c,#0d2040);color:#7adeff"><i class="fas fa-users"></i></div>
+    <h2>Nossas Classes</h2><div class="sh-ln"></div>
+  </div>
+
+  <div class="classes-grid" id="classes-grid">
+
+    <div class="classe-card" style="--cor:#c9a84c">
+      <div style="height:3px;background:linear-gradient(90deg,#c9a84c,transparent)"></div>
+      <div class="classe-card-top">
+        <div class="classe-ic" style="background:linear-gradient(135deg,#3d2800,#1e1400);color:#c9a84c"><i class="fas fa-user-tie"></i></div>
+        <div class="classe-info">
+          <h3>Adultos</h3>
+          <div class="classe-nome" style="color:#c9a84c">EL SHADDAI</div>
+        </div>
+      </div>
+      <div class="classe-desc">Classe para adultos que buscam aprofundamento na Palavra de Deus. Estudos expositivos, debates e aplicação prática da fé no cotidiano.</div>
+    </div>
+
+    <div class="classe-card">
+      <div style="height:3px;background:linear-gradient(90deg,#ffb067,transparent)"></div>
+      <div class="classe-card-top">
+        <div class="classe-ic" style="background:linear-gradient(135deg,#7a3000,#3d1800);color:#ffb067"><i class="fas fa-fire-flame-curved"></i></div>
+        <div class="classe-info">
+          <h3>Jovens</h3>
+          <div class="classe-nome" style="color:#ffb067">CONECTADOS</div>
+        </div>
+      </div>
+      <div class="classe-desc">Jovens conectados com Deus e com o próximo. Uma classe dinâmica, com estudos relevantes para os desafios da juventude cristã hoje.</div>
+    </div>
+
+    <div class="classe-card">
+      <div style="height:3px;background:linear-gradient(90deg,#7adeff,transparent)"></div>
+      <div class="classe-card-top">
+        <div class="classe-ic" style="background:linear-gradient(135deg,#0d4a6b,#072a3e);color:#7adeff"><i class="fas fa-star"></i></div>
+        <div class="classe-info">
+          <h3>Adolescentes</h3>
+          <div class="classe-nome" style="color:#7adeff">ELEITOS DE CRISTO</div>
+        </div>
+      </div>
+      <div class="classe-desc">Classe para adolescentes que estão construindo sua identidade em Cristo. Estudos que falam à realidade deles com verdade e amor.</div>
+    </div>
+
+    <div class="classe-card">
+      <div style="height:3px;background:linear-gradient(90deg,#6fffaa,transparent)"></div>
+      <div class="classe-card-top">
+        <div class="classe-ic" style="background:linear-gradient(135deg,#1a5c30,#0c3318);color:#6fffaa"><i class="fas fa-seedling"></i></div>
+        <div class="classe-info">
+          <h3>Pré-Adolescentes</h3>
+          <div class="classe-nome" style="color:#6fffaa">GERAÇÃO DE SAMUEL</div>
+        </div>
+      </div>
+      <div class="classe-desc">Como Samuel, crianças que ouvem a voz de Deus desde cedo. Uma classe que forma jovens com caráter e fé sólida desde a infância.</div>
+    </div>
+
+    <div class="classe-card">
+      <div style="height:3px;background:linear-gradient(90deg,#ff9de2,transparent)"></div>
+      <div class="classe-card-top">
+        <div class="classe-ic" style="background:linear-gradient(135deg,#5c1a4c,#2d0d26);color:#ff9de2"><i class="fas fa-shield-halved"></i></div>
+        <div class="classe-info">
+          <h3>Crianças</h3>
+          <div class="classe-nome" style="color:#ff9de2">SOLDADINHOS DE CRISTO</div>
+        </div>
+      </div>
+      <div class="classe-desc">Pequenos guerreiros aprendendo sobre o amor de Deus de forma lúdica e divertida. A semente da fé plantada desde os primeiros anos de vida.</div>
+    </div>
+
+  </div>
+
+  <div class="verse-strip">
+    <p id="f-versiculo">"Ensina a criança no caminho em que deve andar, e quando envelhecer não se desviará dele."</p>
+    <span id="f-versiculo-ref">— Provérbios 22:6</span>
+  </div>
+
+  <div class="cta-box">
+    <h3 id="f-cta-titulo">Venha Participar!</h3>
+    <p id="f-cta-desc">A EBD é aberta para toda a família. Todo domingo das 8h30 às 10h30, nossa escola bíblica está de portas abertas para você. Venha aprender, crescer e se conectar com outros irmãos na fé.</p>
+    <a class="btn-wpp" href="https://wa.me/5522998754159?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20EBD%20da%20Igreja%20Manancial%20de%20Vida." target="_blank"><i class="fab fa-whatsapp"></i> Fale Conosco pelo WhatsApp</a>
+  </div>
+
+  <div class="share-row">
+    <span class="share-lbl">COMPARTILHAR</span>
+    <a class="share-btn share-wpp" href="https://wa.me/?text=EBD%20-%20Igreja%20Manancial%20de%20Vida" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <button class="share-btn share-copy" onclick="navigator.clipboard.writeText(location.href);this.innerHTML='<i class=\'fas fa-check\'></i> Copiado!'"><i class="fas fa-link"></i> Copiar Link</button>
+  </div>
+</div>
+
+<footer>© Igreja Manancial de Vida — Todos os direitos reservados</footer>
+
+<script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import {getFirestore,doc,getDoc,setDoc} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const app=initializeApp({apiKey:"AIzaSyDH1s-OQkSsEk784K-moyNlI4jXnckAZh4",authDomain:"portal-digital-imv.firebaseapp.com",projectId:"portal-digital-imv",storageBucket:"portal-digital-imv.firebasestorage.app",messagingSenderId:"951892474691",appId:"1:951892474691:web:4d13ef26a8b05462df0df6"});
+const db=getFirestore(app);
+
+const IDS=['f-titulo','f-sub','f-dest-titulo','f-dest-desc','f-horario','f-versiculo','f-versiculo-ref','f-cta-titulo','f-cta-desc'];
+
+async function carregar(){
+  try{
+    const snap=await getDoc(doc(db,'paginas','ebd'));
+    if(snap.exists()){
+      const d=snap.data();
+      IDS.forEach(id=>{if(d[id]){const el=document.getElementById(id);if(el)el.textContent=d[id];}});
+      if(d.classesGrid)document.getElementById('classes-grid').innerHTML=d.classesGrid;
+    }
+  }catch(e){console.warn(e);}
+}
+carregar();
+
+window.salvarFirebase=async function(){
+  try{
+    const dados={};
+    IDS.forEach(id=>{const el=document.getElementById(id);if(el)dados[id]=el.textContent;});
+    dados.classesGrid=document.getElementById('classes-grid').innerHTML;
+    await setDoc(doc(db,'paginas','ebd'),dados,{merge:true});
+    alert('✅ Salvo com sucesso!');
+    window.cancelarEdicao();
+  }catch(e){alert('⚠️ Erro: '+e.message);}
+};
+</script>
+
+<script>
+window.ativarEdicao=function(){
+  const ids=['f-titulo','f-sub','f-dest-titulo','f-dest-desc','f-horario','f-versiculo','f-versiculo-ref','f-cta-titulo','f-cta-desc'];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el)el.contentEditable='true';});
+  document.querySelectorAll('.classe-info h3,.classe-nome,.classe-desc').forEach(el=>el.contentEditable='true');
+  document.getElementById('btn-editar').style.display='none';
+  document.getElementById('btn-salvar').style.display='inline-flex';
+  document.getElementById('btn-cancelar').style.display='inline-flex';
+};
+
+window.cancelarEdicao=function(){
+  document.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
+  document.getElementById('btn-editar').style.display='inline-flex';
+  document.getElementById('btn-salvar').style.display='none';
+  document.getElementById('btn-cancelar').style.display='none';
+};
+
+let _seq='';
+document.addEventListener('keydown',function(e){
+  _seq+=e.key;
+  if(_seq.includes('adm')){document.getElementById('admin-bar').classList.toggle('on');_seq='';}
+  if(_seq.length>10)_seq='';
+});
+</script>
+</body>
+</html>
