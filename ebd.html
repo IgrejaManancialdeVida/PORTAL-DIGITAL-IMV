@@ -230,7 +230,7 @@ window.salvarFirebase=async function(){
   try{
     const dados={};
     IDS.forEach(id=>{const el=document.getElementById(id);if(el)dados[id]=el.textContent;});
-    dados.classesGrid=document.getElementById('classes-grid').innerHTML;
+   dados.classesGrid=document.getElementById('classes-grid').innerHTML.replace(/contenteditable="true"/g,'');
     await setDoc(doc(db,'paginas','ebd'),dados,{merge:true});
     alert('✅ Salvo com sucesso!');
     window.cancelarEdicao();
