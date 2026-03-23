@@ -1079,11 +1079,21 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
       </div>
       <div class="yt-theater">
         <div class="yt-wrap" id="yt-wrap">
-          <div class="yt-ph" id="yt-ph" onclick="admHint()">
-            <i class="fab fa-youtube"></i>
-            <p>Nenhum culto carregado</p>
-            <small style="font-size:.66rem;color:rgba(255,255,255,.2)">O administrador publica o link antes do culto</small>
-          </div>
+        <div class="yt-ph" id="yt-ph" onclick="admHint()">
+  <div class="yt-ph-capa">
+    <div class="yt-ph-overlay"></div>
+    <div class="yt-ph-body">
+      <img src="assets/logo-imv.svg" alt="Logo IMV" class="yt-ph-logo" onerror="this.style.display='none'"/>
+      <div class="yt-ph-nome">Igreja Manancial de Vida</div>
+      <div class="yt-ph-titulo">CULTO AO VIVO</div>
+      <div class="yt-ph-horarios">
+        <span><i class="fas fa-clock"></i> Terça e Quinta — 19h30</span>
+        <span><i class="fas fa-clock"></i> Domingo — 19h00</span>
+      </div>
+      <div class="yt-ph-aviso"><i class="fab fa-youtube"></i> O culto será transmitido em breve</div>
+    </div>
+  </div>
+</div>
           <iframe id="yt-fr" src="" allowfullscreen allow="autoplay;encrypted-media;fullscreen;picture-in-picture" style="display:none"></iframe>
         </div>
       </div>
