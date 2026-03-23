@@ -242,7 +242,7 @@ window.salvarFirebase=async function(){
 window.ativarEdicao=function(){
   const ids=['f-titulo','f-sub','f-dest-titulo','f-dest-desc','f-dest-data','f-dest-hora','f-dest-local','f-cta-titulo','f-cta-desc'];
   ids.forEach(id=>{const el=document.getElementById(id);if(el)el.contentEditable='true';});
-  document.querySelectorAll('.ev-day,.ev-month,.ev-body h3,.ev-body p,.ev-hora').forEach(el=>el.contentEditable='true');
+  document.querySelectorAll('.ev-day,.ev-month,.ev-body h3,.ev-body p,.ev-hora,.ev-destaque-body h2,.ev-destaque-body p,.sh h2,.hero-title,.hero-sub,.cta-box h3,.cta-box p').forEach(el=>el.contentEditable='true');
   document.getElementById('btn-editar').style.display='none';
   document.getElementById('btn-salvar').style.display='inline-flex';
   document.getElementById('btn-cancelar').style.display='inline-flex';
