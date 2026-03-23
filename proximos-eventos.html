@@ -230,7 +230,7 @@ window.salvarFirebase=async function(){
   try{
     const dados={};
     IDS.forEach(id=>{const el=document.getElementById(id);if(el)dados[id]=el.textContent;});
-    dados.evList=document.getElementById('ev-list').innerHTML;
+ dados.evList=document.getElementById('ev-list').innerHTML.replace(/contenteditable="true"/g,'');
     await setDoc(doc(db,'paginas','proximos-eventos'),dados,{merge:true});
     alert('✅ Salvo com sucesso!');
     window.cancelarEdicao();
