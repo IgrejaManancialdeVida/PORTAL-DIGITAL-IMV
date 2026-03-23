@@ -220,7 +220,7 @@ window.salvarFirebase=async function(){
 window.ativarEdicao=function(){
   const ids=['f-titulo','f-sub','f-intro','f-versiculo','f-versiculo-ref'];
   ids.forEach(id=>{const el=document.getElementById(id);if(el)el.contentEditable='true';});
-  document.querySelectorAll('.min-info h3,.min-info .min-tag,.min-desc').forEach(el=>el.contentEditable='true');
+  document.querySelectorAll('.min-info h3,.min-info .min-tag,.min-desc,.intro-box p,.verse-strip p,.verse-strip span,.sh h2,.hero-title,.hero-sub').forEach(el=>el.contentEditable='true');
   document.getElementById('btn-editar').style.display='none';
   document.getElementById('btn-salvar').style.display='inline-flex';
   document.getElementById('btn-cancelar').style.display='inline-flex';
