@@ -242,6 +242,13 @@ window.salvarFirebase=async function(){
 window.ativarEdicao=function(){
   const ids=['f-titulo','f-sub','f-dest-titulo','f-dest-desc','f-horario','f-versiculo','f-versiculo-ref','f-cta-titulo','f-cta-desc'];
   ids.forEach(id=>{const el=document.getElementById(id);if(el)el.contentEditable='true';});
+  document.querySelectorAll('.classe-info h3,.classe-nome,.classe-desc,.destaque-ebd h2,.destaque-ebd p,.ebd-horario span,.verse-strip p,.verse-strip span,.cta-box h3,.cta-box p,.sh h2,.hero-title,.hero-sub').forEach(el=>el.contentEditable='true');
+  document.getElementById('btn-editar').style.display='none';
+  document.getElementById('btn-salvar').style.display='inline-flex';
+  document.getElementById('btn-cancelar').style.display='inline-flex';
+};
+  const ids=['f-titulo','f-sub','f-dest-titulo','f-dest-desc','f-horario','f-versiculo','f-versiculo-ref','f-cta-titulo','f-cta-desc'];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el)el.contentEditable='true';});
   document.querySelectorAll('.classe-info h3,.classe-nome,.classe-desc').forEach(el=>el.contentEditable='true');
   document.getElementById('btn-editar').style.display='none';
   document.getElementById('btn-salvar').style.display='inline-flex';
