@@ -1864,19 +1864,22 @@ document.querySelectorAll('.ov').forEach(ov=>ov.addEventListener('click',e=>{if(
 function togglePw(){const i=document.getElementById('pw-in');const e=document.getElementById('pw-ico');i.type=i.type==='password'?'text':'password';e.className=i.type==='password'?'fas fa-eye':'fas fa-eye-slash';}
 
 /* ── ADMIN ── */
-let SENHA='Manancial@2026',logado=false;
+let SENHA='70b525fbb989764d09f94306491766bfe046dfd605acfe808c78055317ed34c5',logado=false;
 let agenda=[
   {data:'Terça-feira',  nome:'Culto de Edificação',     hora:'19h30', ordem:0},
   {data:'Quinta-feira', nome:'Culto de Louvor',          hora:'19h30', ordem:1},
   {data:'Domingo',      nome:'Escola Bíblica Dominical', hora:'08h30', ordem:2},
   {data:'Domingo',      nome:'Culto Público',            hora:'19h00', ordem:3},
 ];
-function login(){
+async function login(){
   var inp=document.getElementById('pw-in');
   var err=document.getElementById('pw-err');
   if(!inp){console.error('Campo pw-in não encontrado');return;}
   var v=inp.value.trim();
-  if(v===SENHA){
+const enc=new TextEncoder();
+const buf=await crypto.subtle.digest('SHA-256',enc.encode(v));
+const hex=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+if(hex===SENHA){
     if(err)err.style.display='none';
     C('login');logado=true;document.body.classList.add('adm-mode');fillAdm();O('admin');showAdmBars(true);
   }else{
