@@ -208,7 +208,7 @@ window.salvarFirebase=async function(){
   try{
     const dados={};
     IDS.forEach(id=>{const el=document.getElementById(id);if(el)dados[id]=el.textContent;});
-    dados.minGrid=document.getElementById('min-grid').innerHTML;
+   dados.minGrid=document.getElementById('min-grid').innerHTML.replace(/contenteditable="true"/g,'');
     await setDoc(doc(db,'paginas','nossos-ministerios'),dados,{merge:true});
     alert('✅ Salvo com sucesso!');
     window.cancelarEdicao();
