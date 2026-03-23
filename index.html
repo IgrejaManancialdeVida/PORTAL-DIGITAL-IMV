@@ -1094,28 +1094,34 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
 
     <!-- BÍBLIA -->
     <div class="card" id="biblia">
-      <div class="sh-ic" style="background:linear-gradient(135deg,#5c3e1c,#38240f);color:var(--gold3);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px"><i class="fas fa-book-open"></i></div>
-      <div class="bib-toggle" onclick="toggleBiblia(this)">
-        <div class="bib-toggle-left">
-          <div class="bib-toggle-ico"><i class="fas fa-book-open"></i></div>
-          <div class="bib-toggle-tx">
-            <h3>ABRIR A BÍBLIA ONLINE</h3>
-            <span>Almeida Revista e Corrigida · via Bible.com</span>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down bib-arrow"></i>
-      </div>
-      <div class="bib-body" id="bib-body">
-        <div style="padding:0;overflow:hidden;border-radius:10px">
-          <div class="biblia-container">
-            <iframe id="bib-frame" src="" data-src="https://www.bible.com/pt/bible/211/GEN.1.ARC" title="Bíblia Online" allow="fullscreen"></iframe>
-          </div>
-        </div>
-        <p style="font-size:.7rem;color:var(--muted);text-align:center;margin-top:8px;opacity:.6">Almeida Revista e Corrigida · via Bible.com</p>
+  <div class="bib-versiculo-card">
+    <div class="bib-versiculo-overlay"></div>
+    <div class="bib-versiculo-body">
+      <div class="bib-versiculo-cat"><i class="fas fa-book-open"></i> BÍBLIA ONLINE</div>
+      <p class="bib-versiculo-txt" id="bib-versiculo-txt">"O Senhor é o meu pastor; nada me faltará."</p>
+      <span class="bib-versiculo-ref" id="bib-versiculo-ref">— Salmo 23:1</span>
+    </div>
+  </div>
+  <div class="bib-toggle" onclick="toggleBiblia(this)" style="margin-top:16px">
+    <div class="bib-toggle-left">
+      <div class="bib-toggle-ico"><i class="fas fa-book-open"></i></div>
+      <div class="bib-toggle-tx">
+        <h3>ABRIR A BÍBLIA ONLINE</h3>
+        <span>Almeida Revista e Corrigida · via Bible.com</span>
       </div>
     </div>
-
+    <i class="fas fa-chevron-down bib-arrow"></i>
   </div>
+  <div class="bib-body" id="bib-body">
+    <div style="padding:0;overflow:hidden;border-radius:10px">
+      <div class="biblia-container">
+        <iframe id="bib-frame" src="" data-src="https://www.bible.com/pt/bible/211/GEN.1.ARC" title="Bíblia Online" allow="fullscreen"></iframe>
+      </div>
+    </div>
+    <p style="font-size:.7rem;color:var(--muted);text-align:center;margin-top:8px;opacity:.6">Almeida Revista e Corrigida · via Bible.com</p>
+  </div>
+</div>
+</div>
 </section>
 
 <!-- ══ NOSSOS ESTUDOS BÍBLICOS ══ -->
