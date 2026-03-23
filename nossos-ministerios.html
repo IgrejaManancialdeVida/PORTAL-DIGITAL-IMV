@@ -200,6 +200,11 @@ async function carregar(){
 carregar();
 
 window.salvarFirebase=async function(){
+  const senha=prompt('Digite a senha admin:');
+  const enc=new TextEncoder();
+  const buf=await crypto.subtle.digest('SHA-256',enc.encode(senha));
+  const hex=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  if(hex!=='70b525fbb989764d09f94306491766bfe046dfd605acfe808c78055317ed34c5'){alert('❌ Senha incorreta!');return;}
   try{
     const dados={};
     IDS.forEach(id=>{const el=document.getElementById(id);if(el)dados[id]=el.textContent;});
