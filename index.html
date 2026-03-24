@@ -46,22 +46,17 @@
   --sh:0 8px 40px rgba(0,0,0,.5);
   --t:all .3s cubic-bezier(.4,0,.2,1);
 }
-.yt-ph-capa{position:relative;width:100%;height:100%;background:linear-gradient(135deg,#050d1a,#0a1628,#0f2040);display:flex;align-items:center;justify-content:center;}
-.yt-ph-overlay{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none;}
-.yt-ph-body{position:relative;z-index:1;text-align:center;padding:24px;}
-.yt-ph-logo{width:80px;height:80px;border-radius:50%;margin-bottom:14px;opacity:.9;}
-.yt-ph-nome{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;color:var(--gold);opacity:.7;margin-bottom:8px;}
-.yt-ph-titulo{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:700;color:var(--gold2);letter-spacing:6px;margin-bottom:20px;text-shadow:0 0 30px rgba(201,168,76,.4);}
-.yt-ph-horarios{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
-.yt-ph-horarios span{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:2px;color:rgba(240,237,230,.6);display:flex;align-items:center;justify-content:center;gap:8px;}
-.yt-ph-horarios i{color:var(--gold);opacity:.6;}
-.yt-ph-aviso{font-size:.7rem;color:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;gap:6px;border-top:1px solid rgba(201,168,76,.1);padding-top:16px;margin-top:4px;}
-.yt-ph-aviso i{color:#ff4444;font-size:.8rem;}
-  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-::-webkit-scrollbar{width:5px;} ::-webkit-scrollbar-track{background:var(--navy2);} ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px;}
-input[type=file]{display:none;}
+.yt-ph-capa{position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.yt-ph-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.45);}
+.yt-ph-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(180,80,0,.55),rgba(0,0,0,.4));z-index:1;}
+.yt-ph-body{position:relative;z-index:2;display:flex;align-items:center;gap:24px;padding:24px 32px;width:100%;}
+.yt-ph-logo-wrap{flex-shrink:0;}
+.yt-ph-logo{width:90px;height:90px;border-radius:50%;background:white;padding:4px;}
+.yt-ph-direita{flex:1;}
+.yt-ph-titulo{font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,2rem);font-weight:900;color:#fff;letter-spacing:4px;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.yt-ph-play{color:#ff4444;font-size:1.2rem;}
+.yt-ph-horarios{display:flex;flex-direction:column;gap:6px;}
+.yt-ph-horarios span{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:3px;color:rgba(255,255,255,.85);font-weight:600;}
 
 /* ── NAV ── */
 #nav{position:fixed;top:0;left:0;right:0;z-index:400;background:rgba(6,15,42,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:var(--t);}
@@ -1090,18 +1085,21 @@ body.adm-on .nc-adm-btn{display:inline-flex;align-items:center;gap:6px;}
       </div>
       <div class="yt-theater">
         <div class="yt-wrap" id="yt-wrap">
-        <div class="yt-ph" id="yt-ph" onclick="admHint()">
+       <div class="yt-ph" id="yt-ph" onclick="admHint()">
   <div class="yt-ph-capa">
     <div class="yt-ph-overlay"></div>
+    <img src="https://images.unsplash.com/photo-1478147427282-58a87a433d44?w=1200&q=80" class="yt-ph-bg" alt=""/>
     <div class="yt-ph-body">
-      <img src="assets/logo-imv.svg" alt="Logo IMV" class="yt-ph-logo" onerror="this.style.display='none'"/>
-      <div class="yt-ph-nome">Igreja Manancial de Vida</div>
-      <div class="yt-ph-titulo">CULTO AO VIVO</div>
-      <div class="yt-ph-horarios">
-        <span><i class="fas fa-clock"></i> Terça e Quinta — 19h30</span>
-        <span><i class="fas fa-clock"></i> Domingo — 19h00</span>
+      <div class="yt-ph-logo-wrap">
+        <img src="assets/logo-imv.svg" alt="Logo IMV" class="yt-ph-logo" onerror="this.style.display='none'"/>
       </div>
-      <div class="yt-ph-aviso"><i class="fab fa-youtube"></i> O culto será transmitido em breve</div>
+      <div class="yt-ph-direita">
+        <div class="yt-ph-titulo">CULTO AO VIVO <span class="yt-ph-play">▶</span></div>
+        <div class="yt-ph-horarios">
+          <span>TERÇA E QUINTA | 19:30</span>
+          <span>DOMINGO | 19:00</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
