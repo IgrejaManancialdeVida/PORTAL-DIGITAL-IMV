@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1628;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#050d1a;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e03030;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#b01a1a;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a7cc7;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#2a5aa0;stop-opacity:1"/>
+    </linearGradient>
+    <path id="circleTextTop" d="M 100,100 m -75,0 a 75,75 0 1,1 150,0"/>
+  </defs>
+
+  <!-- Fundo circular escuro -->
+  <circle cx="100" cy="100" r="99" fill="url(#bgGrad)"/>
+
+  <!-- Borda externa azul -->
+  <circle cx="100" cy="100" r="97" fill="none" stroke="#3a5a9a" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#3a5a9a" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- CORAÇÃO VERMELHO -->
+  <path d="M100 128 C100 128 62 104 62 82 C62 69 72 61 81 61 C88 61 95 67 100 74 C105 67 112 61 119 61 C128 61 138 69 138 82 C138 104 100 128 100 128Z"
+        fill="url(#redGrad)" opacity="0.95"/>
+
+  <!-- Espiral dentro do coração (branco) -->
+  <path d="M88 82 Q94 76 100 82 Q106 88 112 82" fill="none" stroke="white" stroke-width="2" opacity="0.7" stroke-linecap="round"/>
+  <path d="M85 90 Q92 82 100 90 Q108 98 115 90" fill="none" stroke="white" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+
+  <!-- Texto IGREJA acima do coração -->
+  <text x="100" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-style="italic" font-weight="bold" fill="url(#blueGrad)" letter-spacing="1.5">Igreja</text>
+
+  <!-- Texto MANANCIAL abaixo do coração -->
+  <text x="100" y="148" text-anchor="middle" font-family="Georgia, serif" font-size="10" font-style="italic" font-weight="bold" fill="url(#blueGrad)" letter-spacing="1">Manancial</text>
+
+  <!-- Texto DE VIDA -->
+  <text x="100" y="162" text-anchor="middle" font-family="Georgia, serif" font-size="10" font-style="italic" font-weight="bold" fill="url(#blueGrad)" letter-spacing="1">de Vida</text>
+
+  <!-- Texto circular -->
+  <text font-family="Arial, sans-serif" font-size="7" fill="#4a7cc7" opacity="0.5" letter-spacing="2.5">
+    <textPath href="#circleTextTop" startOffset="12%">CAMPOS DOS GOYTACAZES • RJ •</textPath>
+  </text>
+
+</svg>
